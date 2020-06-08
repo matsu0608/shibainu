@@ -1,0 +1,196 @@
+body{
+  margin: 0;
+  margin-top: 50px;
+  width: 100%;
+  height: 100%;
+
+}
+
+h1{
+  text-align: center;
+  margin: 0;
+}
+
+h6{
+  margin: 0;
+  text-align: center;
+}
+
+main{
+  text-align: center;
+}
+
+.defInu{
+  width: 200px;
+  margin: 50px 0px 20px 0px;
+}
+
+.gmstInu{
+  width: 200px;
+  margin: 50px 0px 20px 0px;
+  animation: gmstInu 1.5s ease infinite;
+}
+@keyframes gmstInu{
+  0% { transform:translateY(0) }
+  5% { transform:translateY(0) }
+  10% { transform:translateY(0) }
+  20% { transform:translateY(-5px) }
+  25% { transform:translateY(0) }
+  30% { transform:translateY(-5px) }
+  50% { transform:translateY(0) }
+  100% { transform:translateY(0) }
+}
+
+#score❤{
+  width: 120px;
+  margin-bottom: 150px;
+  animation-name: score❤;
+  animation-duration: 0.6s;
+  animation-iteration-count: infinite;
+}
+@keyframes score❤{
+  from{ transform: scale(1.0, 1.0);}
+  to{ transform: scale(1.08, 1.08);}
+}
+
+.score❤_hidden{
+  width: 120px;
+  margin-bottom: 160px;
+  opacity: 0%;
+}
+
+.resultInu{
+  width: 300px;
+  margin: 50px auto 20px auto ;
+}
+.resultInu_0{
+  width: 200px;
+  margin: 50px auto 20px auto ;
+}
+.resultInu_2{
+  width: 350px;
+  margin: 50px auto 20px auto ;
+}
+
+button{
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  width: 180px;
+  height: 46px;
+  color: white;
+  display: block;
+  /* margin: 20px auto; */
+  margin: 10px auto 0 auto;
+  background-color: rgb(255, 196, 0);
+}
+
+
+a{
+  border-radius: 5px;
+  border: solid 2px rgb(0, 0, 0);
+  font-size: 18px;
+  line-height:46px ;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  width: 180px;
+  height: 46px;
+  color: white;
+  display: block;
+  margin: 10px auto 0 auto;
+  background-color: rgb(255, 196, 0);
+}
+
+#result > p{
+  text-align: center;
+}
+
+
+/* おいで */
+.start{
+  background-color: rgb(255, 196, 0);
+}
+#gmst{
+  background-color: rgb(255, 196, 0);
+}
+/* 中断 */
+.fin{
+  background-color: rgb(202, 174, 83);
+}
+
+/* またね */
+.back{
+  background-color: rgb(255, 196, 0);
+}
+
+/* 選択肢ゾーン */
+ul{
+  list-style: none;
+  display: flex;
+  width: 500px;
+  margin: 0px auto 20px auto;
+  padding: 0;
+}
+/* いっこいっこの選択肢 */
+li{
+  margin: 0 auto;
+  background-color: rgb(255, 196, 0);
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: grab;
+}
+.disabled_c{
+  background-color: rgb(255, 225, 128);
+  cursor: not-allowed;
+}
+.correct{
+  margin: 0 auto;
+  background-color:red;
+  /* border: solid 5px red; */
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: none;
+}
+
+.wrong{
+  margin: 0 auto;
+  background-color: rgb(52, 60, 129);
+  /* border: solid 5px rgb(52, 60, 129); */
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: none;
+}
+
+#timer{
+  background-color: rgb(155, 155, 155);
+  color: white;
+  border-radius: 5px;
+  width: 100px;
+  height: 32px;
+  margin: 0 auto;
+  line-height: 32px;
+  cursor:default;
+
+}
+
+.disabled{
+  background-color: rgb(255, 225, 128);
+  cursor: not-allowed;
+}
+
+.hidden{
+  display: none;
+}
+
+/* -------判別用（あとで消したい）-------------------- */
+/* #choices > li.correct::after{
+  content: '...corect!';
+}
+
+#choices > li.wrong::after{
+  content: '...wrong!';
+} */

@@ -13,23 +13,33 @@
   // -----------------↓スコア❤---------------------
   const scoreHeart = document.getElementById('score❤');
 
+  // -----------------↓トップ画面---------------------
   if(window.location.href.endsWith('index.html')){
-    // -----------------↓トップ画面---------------------
     const modal_open = document.getElementById('modal_open');
     const modal_close = document.getElementById('modal_close');
     const modal_content = document.getElementById('modal_content');
+    const nade = document.getElementById('nade');
+    const oyatsu = document.getElementById('oyatsu');
+    const tsuna = document.getElementById('tsuna');
+    const totte = document.getElementById('totte');
+
+    //ステージ選択
+    nade.addEventListener('click', ()=>{
+      console.log('なでなでがクリックされました');//でない
+      nade.classList.add('selected');
+    });
 
 
     
     //ヘルプの表示
     modal_open.addEventListener('click', ()=>{//「あそびかた」がクリックされたら...
     
-      console.log('あそびかたがクリックされました。');//でない
+      console.log('あそびかたがクリックされました。');//ok
       modal_content.classList.add('show');//見えるように。
     
     });
     modal_close.addEventListener('click', ()=>{//「とじる」がクリックされたら...
-      console.log('とじるがクリックされました。');//でない
+      console.log('とじるがクリックされました。');//ok
       modal_content.classList.remove('show');
     });
   }

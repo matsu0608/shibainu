@@ -26,7 +26,6 @@
 
     //ステージ選択
     nade.addEventListener('click', ()=>{
-      console.log('なでなでがクリックされました');//ok
       if(nade.classList.contains('unselected')){
         nade.classList.remove('unselected');
         oyatsu.classList.add('unselected');
@@ -39,7 +38,6 @@
       }
     });
     oyatsu.addEventListener('click', ()=>{
-      console.log('おやつあてがクリックされました');//ok
       if(oyatsu.classList.contains('unselected')){
         oyatsu.classList.remove('unselected');
         nade.classList.add('unselected');
@@ -52,7 +50,6 @@
       }
     });
     tsuna.addEventListener('click', ()=>{
-      console.log('つなひきがクリックされました');//ok
       if(tsuna.classList.contains('unselected')){
         tsuna.classList.remove('unselected');
         nade.classList.add('unselected');
@@ -65,7 +62,6 @@
       }
     });
     totte.addEventListener('click', ()=>{
-      console.log('とってこーいがクリックされました');//ok
       if(totte.classList.contains('unselected')){
         totte.classList.remove('unselected');
         nade.classList.add('unselected');
@@ -80,11 +76,9 @@
     
     //ヘルプの表示
     modal_open.addEventListener('click', ()=>{
-      console.log('あそびかたがクリックされました。');//ok
       modal_content.classList.add('show');//見えるように。
     });
     modal_close.addEventListener('click', ()=>{//「とじる」
-      console.log('とじるがクリックされました。');//ok
       modal_content.classList.remove('show');
     });
   }

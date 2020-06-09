@@ -2,12 +2,13 @@
 html{
   width: 100%;
   height: 100%;
+  background-color: rgb(211, 128, 89) ;
   
 }
 body{
-  width: 100%;
-  height: 100%;
-  margin: 0;
+  width: 667px;
+  height: 375px;
+  margin: 0 auto;
   background-color:rgb(255, 232, 203) ;
 }
 
@@ -88,7 +89,7 @@ main{
    margin: 10px auto 0 0;
   }
 .unselected{
-  width: 140px;
+  width: 180px;
   opacity: 0.6;
 }
 
@@ -98,8 +99,8 @@ main{
 }
 
 #modal_base{
-  width: 100%;
-  height: 100%; 
+  width: 600px;
+  height: 300px; 
   /* background-color: aqua; */
    z-index:3;
   position: absolute;
@@ -109,12 +110,12 @@ main{
 
  #modal_content{
   text-align: center;
-  width:60%;
-	/* margin:1.5em auto 0; */
+  width: 400px;
+  margin-left: 200px;
 	padding:10px 20px;
 	border:2px solid #aaa;
 	background:#fff;
-  z-index:2;
+  z-index:3;
   visibility: hidden;
   position: relative;
   display: inline-block;
@@ -136,7 +137,7 @@ main{
 
 #modal_open{
   background-color:rgb(177, 147, 49);
-  width: 140px;  
+  width: 180px;  
 }
 #modal_close{
   height: 23px;

@@ -1,12 +1,18 @@
-body{
-  margin: 0;
-  margin-top: 50px;
+html{
   width: 100%;
   height: 100%;
-
+  
+}
+body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color:rgb(255, 232, 203) ;
 }
 
 h1{
+  padding-top: 10px;
+  /* font-size: 54px; */
   text-align: center;
   margin: 0;
 }
@@ -18,16 +24,122 @@ h6{
 
 main{
   text-align: center;
+  position: relative;
+  /* background-color: white; */
 }
+
+ .sizuku { 
+   animation: sizuku 0.5s linear 0s;  
+  /*1s はアニメーションにかかる時間*/
+   background-color: rgb(255, 176, 102); 
+   /*背景色*/
+   border-radius: 50%;
+  border: 4px solid rgb(255, 176, 102);  
+  /*ボーダーの幅と色*/
+   position: absolute;
+  z-index: 1000;
+} 
+@keyframes sizuku {
+  0% {
+      height: 0; 
+      opacity: 1;
+      transform: translate(0, 0);
+      width: 0;
+  }
+  100% {
+      height: 50px; 
+       /*円の高さ幅の最大値*/
+      opacity: 0; 
+      transform: translate(-25px, -25px); 
+       /*高さの半分の値にする*/
+       width: 50px;  
+      /*基本高さと合わせる*/
+   } 
+ } 
+
+ .side_list{
+   line-height:40px ;
+   text-decoration: none;
+   display: block;
+   position: absolute;
+   left: 0;
+   top: 0;
+   
+  }
+  .side_list button{
+   text-align: right;
+   font-size: 18px;
+   border-radius: 5px;
+   border: none;
+   width: 180px;
+   height: 40px;
+   padding-right: 10px;
+   padding-left: 0px;
+   color: white;
+   margin: 10px auto 0 auto;
+   background-color: rgb(255, 196, 0);
+ }
 
 .defInu{
   width: 200px;
-  margin: 50px 0px 20px 0px;
+  margin: 20px 0px;
 }
+
+#modal_base{
+  width: 100%;
+  height: 100%; 
+  /* background-color: aqua; */
+   z-index:3;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+} 
+
+ #modal_content{
+  text-align: center;
+  width:60%;
+	/* margin:1.5em auto 0; */
+	padding:10px 20px;
+	border:2px solid #aaa;
+	background:#fff;
+  z-index:2;
+  visibility: hidden;
+  position: relative;
+  display: inline-block;
+} 
+
+ div#modal_content.show{
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 0.5s;
+} 
+ @-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+#modal_open{
+  background-color:rgb(202, 174, 83);
+}
+#modal_close{
+  height: 23px;
+  font-size: 9px;
+  margin-top: 20px;
+  background-color:rgb(202, 174, 83);
+}
+.modal_img{
+  height: 100px;
+} 
 
 .gmstInu{
   width: 200px;
-  margin: 50px 0px 20px 0px;
+  margin: 0px 50px;
+  display: inline-block;
+  vertical-align: top;
   animation: gmstInu 1.5s ease infinite;
 }
 @keyframes gmstInu{
@@ -43,7 +155,9 @@ main{
 
 #score❤{
   width: 120px;
-  margin-bottom: 150px;
+  /* margin-bottom: 160px; */
+  display: inline-block;
+  vertical-align: top;
   animation-name: score❤;
   animation-duration: 0.6s;
   animation-iteration-count: infinite;
@@ -53,31 +167,25 @@ main{
   to{ transform: scale(1.08, 1.08);}
 }
 
-.score❤_hidden{
-  width: 120px;
-  margin-bottom: 160px;
-  opacity: 0%;
-}
-
 .resultInu{
-  width: 300px;
-  margin: 50px auto 20px auto ;
+  width: 250px;
+  margin: 0px auto ;
 }
 .resultInu_0{
-  width: 200px;
-  margin: 50px auto 20px auto ;
+  width: 180px;
+  margin: 0px auto;
 }
 .resultInu_2{
   width: 350px;
-  margin: 50px auto 20px auto ;
+  margin: 0px auto;
 }
 
 button{
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 24px;
   cursor: pointer;
-  width: 180px;
-  height: 46px;
+  width: 200px;
+  height: 48px;
   color: white;
   display: block;
   /* margin: 20px auto; */
@@ -86,37 +194,31 @@ button{
 }
 
 
-a{
-  border-radius: 5px;
-  border: solid 2px rgb(0, 0, 0);
-  font-size: 18px;
-  line-height:46px ;
+/* #result > p{
   text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  width: 180px;
-  height: 46px;
-  color: white;
-  display: block;
-  margin: 10px auto 0 auto;
-  background-color: rgb(255, 196, 0);
-}
-
-#result > p{
-  text-align: center;
-}
+} */
 
 
 /* おいで */
 .start{
   background-color: rgb(255, 196, 0);
+  margin-top: 0;
 }
 #gmst{
   background-color: rgb(255, 196, 0);
 }
 /* 中断 */
 .fin{
+  border: none;
+  width: 110px;
+  height: 32px;
+  font-size: 18px;
   background-color: rgb(202, 174, 83);
+  margin:0px;
+  margin-right: 0px;
+  display: inline-block;
+  vertical-align: top;
+  /* top: 0; */
 }
 
 /* またね */
@@ -128,12 +230,13 @@ a{
 ul{
   list-style: none;
   display: flex;
-  width: 500px;
-  margin: 0px auto 20px auto;
-  padding: 0;
+  width: 600px;
+  margin: 10px auto;
+  padding: 0px;
 }
 /* いっこいっこの選択肢 */
 li{
+  font-size: 20px;
   margin: 0 auto;
   background-color: rgb(255, 196, 0);
   color: white;
@@ -165,16 +268,40 @@ li{
   cursor: none;
 }
 
+/* タイマー */
 #timer{
   background-color: rgb(155, 155, 155);
   color: white;
   border-radius: 5px;
-  width: 100px;
-  height: 32px;
-  margin: 0 auto;
-  line-height: 32px;
+  width: 60px;
+  height: 48px;
+  font-size: 18px;
+  margin-left:150px;
+  line-height: 52px;
+  text-align: center;
   cursor:default;
-
+  display: inline-block;
+}
+/* 「つぎ」 */
+.next{
+  margin: 0 15px;
+  display: inline-block;
+}
+/* 「柴犬は…」 */
+a{
+  border-radius: 5px;
+  border: solid 3px rgb(255, 115, 0);
+  font-size: 24px;
+  line-height:44px ;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  width: 210px;
+  height: 44px;
+  color: white;
+  display: inline-block;
+  margin: 0px auto;
+  background-color: rgb(255, 196, 0);
 }
 
 .disabled{
@@ -185,12 +312,3 @@ li{
 .hidden{
   display: none;
 }
-
-/* -------判別用（あとで消したい）-------------------- */
-/* #choices > li.correct::after{
-  content: '...corect!';
-}
-
-#choices > li.wrong::after{
-  content: '...wrong!';
-} */

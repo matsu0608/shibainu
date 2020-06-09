@@ -13,10 +13,10 @@
   </header>
   <main>
     <div class="side_list">
-      <button id="nade" type="button">なでなで</button>
-      <button id="oyatsu" type="button">おやつあて</button>
-      <button id="tsuna" type="button">つなひき</button>
-      <button id="totte" type="button">とってこーい</button>
+      <button id="nade" type="button" class="unselected">なでなで</button>
+      <button id="oyatsu" type="button" class="unselected">おやつあて</button>
+      <button id="tsuna" type="button" class="unselected">つなひき</button>
+      <button id="totte" type="button" class="unselected">とってこーい</button>
       <button id="modal_open" type="button">あそびかた</button>
     </div>
 
@@ -28,13 +28,10 @@
         <button id="modal_close">✖ とじる</button>
       </div>
     </div>
-
-    
-    
   </main>
   
   <footer>
-    <button class="start" type="submit" onclick='location.href="play.html"'>「おいで！」</button>
+    <button id="start" class="start disabled" type="submit" onclick='location.href="play.html"'>「おいで！」</button>
     
   </footer>
   <script src="main.js"></script>

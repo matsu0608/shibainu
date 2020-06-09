@@ -12,8 +12,9 @@
   const timer = document.getElementById('timer');
   // -----------------↓スコア❤---------------------
   const scoreHeart = document.getElementById('score❤');
-
+  
   // -----------------↓トップ画面---------------------
+  const start_btn = document.getElementById('start');
   if(window.location.href.endsWith('index.html')){
     const modal_open = document.getElementById('modal_open');
     const modal_close = document.getElementById('modal_close');
@@ -25,24 +26,69 @@
 
     //ステージ選択
     nade.addEventListener('click', ()=>{
-      console.log('なでなでがクリックされました');//でない
-      nade.classList.add('selected');
+      console.log('なでなでがクリックされました');//ok
+      if(nade.classList.contains('unselected')){
+        nade.classList.remove('unselected');
+        oyatsu.classList.add('unselected');
+        tsuna.classList.add('unselected');
+        totte.classList.add('unselected');
+        start_btn.classList.remove('disabled');
+        // start_btn.onclick = 'location.href="play.html"';
+      }else{
+        return;
+      }
     });
-
-
+    oyatsu.addEventListener('click', ()=>{
+      console.log('おやつあてがクリックされました');//ok
+      if(oyatsu.classList.contains('unselected')){
+        oyatsu.classList.remove('unselected');
+        nade.classList.add('unselected');
+        tsuna.classList.add('unselected');
+        totte.classList.add('unselected');
+        start_btn.classList.remove('disabled');
+        // start_btn.onclick = 'location.href="play.html"';
+      }else{
+        return;
+      }
+    });
+    tsuna.addEventListener('click', ()=>{
+      console.log('つなひきがクリックされました');//ok
+      if(tsuna.classList.contains('unselected')){
+        tsuna.classList.remove('unselected');
+        nade.classList.add('unselected');
+        oyatsu.classList.add('unselected');
+        totte.classList.add('unselected');
+        start_btn.classList.remove('disabled');
+        // start_btn.onclick = 'location.href="play.html"';
+      }else{
+        return;
+      }
+    });
+    totte.addEventListener('click', ()=>{
+      console.log('とってこーいがクリックされました');//ok
+      if(totte.classList.contains('unselected')){
+        totte.classList.remove('unselected');
+        nade.classList.add('unselected');
+        oyatsu.classList.add('unselected');
+        tsuna.classList.add('unselected');
+        start_btn.classList.remove('disabled');
+        // start_btn.onclick = 'location.href="play.html"';
+      }else{
+        return;
+      }
+    });
     
     //ヘルプの表示
-    modal_open.addEventListener('click', ()=>{//「あそびかた」がクリックされたら...
-    
+    modal_open.addEventListener('click', ()=>{
       console.log('あそびかたがクリックされました。');//ok
       modal_content.classList.add('show');//見えるように。
-    
     });
-    modal_close.addEventListener('click', ()=>{//「とじる」がクリックされたら...
+    modal_close.addEventListener('click', ()=>{//「とじる」
       console.log('とじるがクリックされました。');//ok
       modal_content.classList.remove('show');
     });
   }
+// --------ここまでトップ画面----------
   
   //配列
   const quiz= shuffle([

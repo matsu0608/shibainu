@@ -1,3 +1,4 @@
+/* ----------------共通部分------------ */
 html{
   width: 100%;
   height: 100%;
@@ -23,57 +24,73 @@ main{
   /* background-color: white; */
 }
 
- .sizuku { 
-   animation: sizuku 0.5s linear 0s;  
+.sizuku { 
+  animation: sizuku 0.5s linear 0s;  
   /*1s はアニメーションにかかる時間*/
-   background-color: rgb(255, 176, 102); 
-   /*背景色*/
-   border-radius: 50%;
+  background-color: rgb(255, 176, 102); 
+  /*背景色*/
+  border-radius: 50%;
   border: 4px solid rgb(255, 176, 102);  
   /*ボーダーの幅と色*/
-   position: absolute;
+  position: absolute;
   z-index: 1000;
 } 
 @keyframes sizuku {
   0% {
-      height: 0; 
-      opacity: 1;
-      transform: translate(0, 0);
-      width: 0;
+    height: 0; 
+    opacity: 1;
+    transform: translate(0, 0);
+    width: 0;
   }
   100% {
-      height: 50px; 
+    height: 50px; 
        /*円の高さ幅の最大値*/
       opacity: 0; 
       transform: translate(-25px, -25px); 
-       /*高さの半分の値にする*/
-       width: 50px;  
+      /*高さの半分の値にする*/
+      width: 50px;  
       /*基本高さと合わせる*/
-   } 
- } 
+    } 
+  } 
+  
+  button{
+    border-radius: 5px;
+    font-size: 24px;
+    /* cursor: pointer; */
+    width: 200px;
+    height: 48px;
+    color: white;
+    display: block;
+    margin: 10px auto 0 auto;
+    background-color: rgb(255, 196, 0);
+  }
 
- .side_list{
+  /* ------------------ここからトップ画面------------- */
+  
+  .side_list{
    line-height:40px ;
    text-decoration: none;
    display: block;
    position: absolute;
    left: 0;
    top: 0;
-   
+   z-index: 5;
   }
   .side_list button{
    text-align: right;
+   border: none;
    font-size: 18px;
    border-radius: 5px;
-   border: none;
-   width: 180px;
    height: 40px;
    padding-right: 10px;
    padding-left: 0px;
    color: white;
-   margin: 10px auto 0 auto;
-   background-color: rgb(255, 196, 0);
- }
+   margin: 10px auto 0 0;
+  }
+.unselected{
+  width: 140px;
+  opacity: 0.6;
+}
 
 .defInu{
   width: 200px;
@@ -118,7 +135,8 @@ main{
 }
 
 #modal_open{
-  background-color:rgb(202, 174, 83);
+  background-color:rgb(177, 147, 49);
+  width: 140px;  
 }
 #modal_close{
   height: 23px;
@@ -130,11 +148,13 @@ main{
   height: 100px;
 } 
 
-.selected{
-  border: solid 2px red;
+/* おいで */
+.start{
+  margin-top: 0;
 }
+/* --------------ここまでトップ画面-------------- */
 
-/* --------------ここまでおよそトップ画面-------------- */
+/* --------------ここからプレイ画面 */
 
 .gmstInu{
   width: 200px;
@@ -168,46 +188,7 @@ main{
   to{ transform: scale(1.08, 1.08);}
 }
 
-.resultInu{
-  width: 250px;
-  margin: 0px auto ;
-}
-.resultInu_0{
-  width: 180px;
-  margin: 0px auto;
-}
-.resultInu_2{
-  width: 350px;
-  margin: 0px auto;
-}
 
-button{
-  border-radius: 5px;
-  font-size: 24px;
-  cursor: pointer;
-  width: 200px;
-  height: 48px;
-  color: white;
-  display: block;
-  /* margin: 20px auto; */
-  margin: 10px auto 0 auto;
-  background-color: rgb(255, 196, 0);
-}
-
-
-/* #result > p{
-  text-align: center;
-} */
-
-
-/* おいで */
-.start{
-  background-color: rgb(255, 196, 0);
-  margin-top: 0;
-}
-#gmst{
-  background-color: rgb(255, 196, 0);
-}
 /* 中断 */
 .fin{
   border: none;
@@ -222,10 +203,6 @@ button{
   /* top: 0; */
 }
 
-/* またね */
-.back{
-  background-color: rgb(255, 196, 0);
-}
 
 /* 選択肢ゾーン */
 ul{
@@ -312,4 +289,24 @@ a{
 
 .hidden{
   display: none;
+}
+
+/* ------------リゾルト画面 */
+
+.resultInu{
+  width: 250px;
+  margin: 0px auto ;
+}
+.resultInu_0{
+  width: 180px;
+  margin: 0px auto;
+}
+.resultInu_2{
+  width: 350px;
+  margin: 0px auto;
+}
+
+/* またね */
+.back{
+  background-color: rgb(255, 196, 0);
 }

@@ -17,11 +17,6 @@ h1{
   margin: 0;
 }
 
-h6{
-  margin: 0;
-  text-align: center;
-}
-
 main{
   text-align: center;
   position: relative;
@@ -134,6 +129,12 @@ main{
 .modal_img{
   height: 100px;
 } 
+
+.selected{
+  border: solid 2px red;
+}
+
+/* --------------ここまでおよそトップ画面-------------- */
 
 .gmstInu{
   width: 200px;

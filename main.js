@@ -14,10 +14,12 @@
   const scoreHeart = document.getElementById('score❤');
 
   if(window.location.href.endsWith('index.html')){
-    // -----------------↓ヘルプ系---------------------
+    // -----------------↓トップ画面---------------------
     const modal_open = document.getElementById('modal_open');
     const modal_close = document.getElementById('modal_close');
     const modal_content = document.getElementById('modal_content');
+
+
     
     //ヘルプの表示
     modal_open.addEventListener('click', ()=>{//「あそびかた」がクリックされたら...

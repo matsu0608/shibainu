@@ -5,9 +5,17 @@
   <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>柴犬とあそぼう</title>
+  <title>柴犬とあそぼう</title>
 </head>
 <body>
+
+  <div id="modal_base">
+    <div id="modal_content">
+      <h3>あそびかた</h3>
+      <img class="modal_img" src="img/0dog.png">
+    </div>
+  </div>
+  
   <header>
     <h1>「柴犬とあそぼう」</h1>
   </header>
@@ -16,24 +24,25 @@
       <button id="nade" type="button" class="unselected">なでなで</button>
       <button id="oyatsu" type="button" class="unselected">おやつあて</button>
       <button id="tsuna" type="button" class="unselected">つなひき</button>
-      <button id="totte" type="button" class="unselected">とってこーい</button>
+      <button id="totte" type="button" class="unselected">とってこい</button>
       <button id="modal_open" type="button">あそびかた</button>
     </div>
 
     <img class="defInu" src="img/gamestart_dog.png">
-    <div id="modal_base">
-      <div id="modal_content">
-        <h3>あそびかた</h3>
-        <img class="modal_img" src="img/0dog.png">
-        <button id="modal_close">✖ とじる</button>
-      </div>
-    </div>
 
   </main>
   
   <footer>
     <button id="start" class="start disabled" type="botton" onclick=''>「おいで！」</button>
     
+    <div id="slide_btns" class="hidden">
+      <p id="slide_btn_top" class="slide_btn">はじめに</p>
+      <p id="slide_btn_nade" class="slide_btn">なでなで</p>
+      <p id="slide_btn_oyatyu" class="slide_btn"> おやつあて</p>
+      <p id="slide_btn_tsuna" class="slide_btn">つなひき</p>
+      <p id="slide_btn_totte" class="slide_btn">とってこい</p>
+      <p id="modal_close" class="slide_btn">✖ とじる</p>
+    </div>
   </footer>
   <script src="main.js"></script>
 </body>

@@ -24,6 +24,13 @@
     const tsuna = document.getElementById('tsuna');
     const totte = document.getElementById('totte');
 
+    const slide_btns = document.getElementById('slide_btns');
+    const slide_btn_top = document.getElementById('slide_btn_top');
+    const slide_btn_nade = document.getElementById('slide_btn_nade');
+    const slide_btn_oyatyu = document.getElementById('slide_btn_oyatyu');
+    const slide_btn_tsuna = document.getElementById('slide_btn_tsuna');
+    const slide_btn_totte = document.getElementById('slide_btn_totte');
+
     //ステージ選択
     start_btn.addEventListener('click', ()=>{
       if(start_btn.classList.contains('disabled')){
@@ -85,7 +92,9 @@
     
     //ヘルプの表示
     modal_open.addEventListener('click', ()=>{
-      modal_content.classList.add('show');//見えるように。
+      modal_content.classList.add('show');
+      slide_btns.classList.remove('hidden');
+      //見えるように。
     });
     modal_close.addEventListener('click', ()=>{//「とじる」
       modal_content.classList.remove('show');

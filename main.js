@@ -98,6 +98,7 @@
     });
     modal_close.addEventListener('click', ()=>{//「とじる」
       modal_content.classList.remove('show');
+      slide_btns.classList.add('hidden');
     });
   }
 // --------ここまでトップ画面----------

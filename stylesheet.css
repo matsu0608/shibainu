@@ -112,9 +112,10 @@ main{
  #modal_content{
   text-align: center;
   width: 619px;
-  height: 346px;
+  height: 306px;
 	padding:10px 20px;
-	border:4px solid #aaa;
+  border:4px dotted #aaa;
+  border-bottom: 4px solid white;
 	background:#fff;
   z-index:3;
   visibility: hidden;
@@ -143,6 +144,21 @@ main{
   color: white;
   font-size: 16px;
   padding-left: 20px;
+  background-color: white;
+  padding-bottom: 13px;
+  border: 4px dotted #aaa;
+  border-top: none;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 0.5s;
+} 
+ @-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+
 }
 
 .slide_btn{

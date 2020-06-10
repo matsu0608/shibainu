@@ -25,6 +25,14 @@
     const totte = document.getElementById('totte');
 
     //ステージ選択
+    start_btn.addEventListener('click', ()=>{
+      if(start_btn.classList.contains('disabled')){
+        return; //押せない時は何も起こらない。
+      }else{
+        start_btn.onclick = location.href="play.html"
+      }//コース選択によってリンク先変えたい。
+    });
+
     nade.addEventListener('click', ()=>{
       if(nade.classList.contains('unselected')){
         nade.classList.remove('unselected');
@@ -32,7 +40,8 @@
         tsuna.classList.add('unselected');
         totte.classList.add('unselected');
         start_btn.classList.remove('disabled');
-        // start_btn.onclick = 'location.href="play.html"';
+        // start_btn.onclick = location.href="play.html"
+        //↑これするとなでなで押したら画面遷移する
       }else{
         return;
       }
@@ -44,7 +53,7 @@
         tsuna.classList.add('unselected');
         totte.classList.add('unselected');
         start_btn.classList.remove('disabled');
-        // start_btn.onclick = 'location.href="play.html"';
+        // start_btn.onclick = location.href="play.html"
       }else{
         return;
       }
@@ -56,7 +65,7 @@
         oyatsu.classList.add('unselected');
         totte.classList.add('unselected');
         start_btn.classList.remove('disabled');
-        // start_btn.onclick = 'location.href="play.html"';
+        // start_btn.onclick = location.href="play.html"
       }else{
         return;
       }
@@ -68,7 +77,7 @@
         oyatsu.classList.add('unselected');
         tsuna.classList.add('unselected');
         start_btn.classList.remove('disabled');
-        // start_btn.onclick = 'location.href="play.html"';
+        // start_btn.onclick = location.href="play.html"
       }else{
         return;
       }

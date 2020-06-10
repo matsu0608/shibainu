@@ -2,7 +2,7 @@
 html{
   width: 100%;
   height: 100%;
-  background-color: rgb(211, 128, 89) ;
+  /* background-color: rgb(211, 128, 89) ; */
   background-image: url("img/back.png");
 }
 body{
@@ -202,6 +202,10 @@ h3{
 /* --------------ここまでトップ画面-------------- */
 
 /* --------------ここからプレイ画面 */
+.nade{
+  background-image: url(img/back_nade.png);
+  background-size: cover;
+}
 
 .gmstInu{
   width: 200px;

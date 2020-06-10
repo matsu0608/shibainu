@@ -30,6 +30,7 @@
     const slide_btn_oyatyu = document.getElementById('slide_btn_oyatyu');
     const slide_btn_tsuna = document.getElementById('slide_btn_tsuna');
     const slide_btn_totte = document.getElementById('slide_btn_totte');
+    const map = document.getElementById('map');
 
     //ステージ選択
     start_btn.addEventListener('click', ()=>{
@@ -49,6 +50,7 @@
         start_btn.classList.remove('disabled');
         // start_btn.onclick = location.href="play.html"
         //↑これするとなでなで押したら画面遷移する
+        map.src = "img/map_nade.png"
       }else{
         return;
       }
@@ -61,6 +63,7 @@
         totte.classList.add('unselected');
         start_btn.classList.remove('disabled');
         // start_btn.onclick = location.href="play.html"
+        map.src = "img/map_oyatsu.png"
       }else{
         return;
       }
@@ -73,6 +76,7 @@
         totte.classList.add('unselected');
         start_btn.classList.remove('disabled');
         // start_btn.onclick = location.href="play.html"
+        map.src = "img/map_tsuna.png"
       }else{
         return;
       }
@@ -85,6 +89,7 @@
         tsuna.classList.add('unselected');
         start_btn.classList.remove('disabled');
         // start_btn.onclick = location.href="play.html"
+        map.src = "img/map_totte.png"
       }else{
         return;
       }

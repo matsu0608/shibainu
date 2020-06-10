@@ -24,6 +24,7 @@
     const tsuna = document.getElementById('tsuna');
     const totte = document.getElementById('totte');
 
+    const modal_img = document.getElementById('modal_img');
     const slide_btns = document.getElementById('slide_btns');
     const slide_btn_top = document.getElementById('slide_btn_top');
     const slide_btn_nade = document.getElementById('slide_btn_nade');
@@ -105,6 +106,24 @@
       modal_content.classList.remove('show');
       slide_btns.classList.add('hidden');
     });
+    slide_btn_top.addEventListener('click', ()=>{//「はじめに」
+      modal_img.src = "img/modal_hazimeni.png"
+    });
+    slide_btn_nade.addEventListener('click', ()=>{//「なでなで」
+      modal_img.src = "img/modal_nade.png"
+    });
+    slide_btn_oyatyu.addEventListener('click', ()=>{//「おやつあて」
+      modal_img.src = "img/modal_hazimeni.png"
+    });
+    slide_btn_tsuna.addEventListener('click', ()=>{//「つなひき」
+      modal_img.src = "img/modal_hazimeni.png"
+    });
+    slide_btn_totte.addEventListener('click', ()=>{//「とってこい」
+      modal_img.src = "img/modal_hazimeni.png"
+    });
+
+
+
   }
 // --------ここまでトップ画面----------
   

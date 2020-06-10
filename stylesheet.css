@@ -74,11 +74,15 @@ main{
    position: absolute;
    right: 30px;
    top: 0;
-   /* transform: rotate(25deg); */
+   /* animation: fadeIn 0.5s; */
    animation: 7S linear infinite rotation;
-  }
+  } 
+  /* @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  } */
   @keyframes rotation{
-    0%{ transform:rotateY(0);}
+    0%{ transform:rotateY(0deg);}
     100%{ transform:rotateY(360deg); }
   }
 
@@ -163,17 +167,11 @@ main{
   padding-bottom: 13px;
   border: 4px dotted #aaa;
   border-top: none;
-  -webkit-animation: fadeIn 1s;
   animation: fadeIn 0.5s;
 } 
- @-webkit-keyframes fadeIn {
-  from {opacity: 0;} 
-  to {opacity: 1;}
-}
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity:1 ;}
-
 }
 
 .slide_btn{
@@ -191,7 +189,7 @@ main{
   background-color:rgb(177, 147, 49);
 }
 .modal_img{
-  height: 160px;
+  height: 300px;
 } 
 h3{
   margin-top: 0;

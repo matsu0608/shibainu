@@ -334,7 +334,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
       ED_nade = JSON.parse(cdata_nade);  //Storageのデータを配列に戻す
         for (var i = 0 ; i < 4 ; i++) {
         if( ED_nade[i] == 1 ){
-          get_nade[i].src = "img/memory.png";
+          get_nade[i].src = "img/memory.png";//エラー
         }
       }
     }
@@ -342,25 +342,24 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
   function getED(){//回収配列の中身0を1にする。
     //なでなでゲームのED画面urlによって
-    //書き方？？？？？？？？？？
-    if(window.location.href.contains('0_nade')){
+    if(window.location.href.indexOf('0_nade')){
       ED_nade[0] = 1;
-    }else if(window.location.href.contains('1_nade')){
+    }else if(window.location.href.indexOf('1_nade')){
       ED_nade[1] = 1;
-    }else if(window.location.href.contains('2_nade')){
+    }else if(window.location.href.indexOf('2_nade')){
       ED_nade[2] = 1;
-    }else if(window.location.href.contains('3_nade')){
+    }else if(window.location.href.indexOf('3_nade')){
       ED_nade[3] = 1;
     }
     localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
-    // clear_nadeというキーで回収配列を保存したい。
+    // clear_nadeというキーで回収配列を保存したい。ok
   }
 
-  if(window.location.href.endsWith('result.html')){//どこかしらリゾルト画面にいたら。書き方？？？？？
+  if(window.location.href.endsWith('result.html')){//どこかしらリゾルト画面にいたら。
     window.onload = function(){
       console.log("リゾルト画面です。");//ok
       getED();
-      console.log(window.localStorage);//出ない。
+      console.log(window.localStorage);//ok
     }
   }
 
@@ -368,8 +367,8 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   if(window.location.href.endsWith('memory.html')){//おもいで画面にいたら。
     window.onload = function(){
       console.log("おもいで画面です。");//ok
-      setData();
-      console.log(window.localStorage);//ok
+      setData();//エラー
+      console.log(window.localStorage);//出ない
     }
     function complete(){//EDコンプ判定で「交代」可能化
   

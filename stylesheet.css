@@ -107,9 +107,27 @@ main{
    color: white;
    margin: 10px auto 0 0;
   }
-.unselected{
-  width: 150px;
-  opacity: 0.6;
+  .unselected{
+    width: 150px;
+    opacity: 0.6;
+  }
+  
+  #trophy{
+    width:150px ;
+    background-color:rgb(177, 147, 49) ;
+    height: 20px;
+    font-size: 9px;
+  }
+
+#inu_change{
+  width: 40px;
+  height: 20px;
+  font-size: 5px;
+  border: none;
+  display: block;
+  position: absolute;
+  left: 230px;
+  top: 170px;
 }
 
 .defInu{
@@ -157,6 +175,8 @@ main{
 #modal_open{
   background-color:rgb(177, 147, 49);
   width: 150px;  
+  height: 20px;
+  font-size: 9px;
 }
 
 #slide_btns{
@@ -167,6 +187,7 @@ main{
   padding-bottom: 13px;
   border: 4px dotted #aaa;
   border-top: none;
+  z-index: 5;
   animation: fadeIn 0.5s;
 } 
 @keyframes fadeIn {
@@ -360,4 +381,42 @@ a{
 /* またね */
 .back{
   background-color: rgb(255, 196, 0);
+}
+
+/* -------------おもいで画面---- */
+.memory_title{
+  margin-top: 20px;
+}
+h4{
+  display: inline; 
+  margin:0 45px;
+}
+
+.memory_table{
+  display: flex;
+}
+table{
+  width: 160px;
+  font-size: 12px;
+  margin: 10px auto 20px auto;
+  border: solid 4px white;
+  background-color: rgba(255,255,255,0.5);
+  background-blend-mode: lighten;
+}
+table th, table td{
+  border:dashed 1px white;
+}
+
+#memory_niku{
+  width: 15px;
+}
+.td_img{
+  padding: 0;
+  padding-top:2px;
+}
+#memory_fin{
+  margin-left: 8px;
+}
+h6{
+  margin: 0 auto 30px 8px;
 }

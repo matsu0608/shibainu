@@ -4,7 +4,6 @@
   //HTMLから取得
   const question = document.getElementById('question');
   const choices = document.getElementById('choices');
-  // const list = document.getElementById('li');
   const btn = document.getElementById('btn');
   const fin = document.getElementById('fin');
   const scoreLabel = document.querySelector('#result>p');

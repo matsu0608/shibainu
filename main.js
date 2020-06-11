@@ -32,6 +32,9 @@
     const slide_btn_totte = document.getElementById('slide_btn_totte');
     const map = document.getElementById('map');
 
+    const inu_change = document.getElementById('inu_change');
+    const defInu = document.getElementById('defInu');
+
     //ステージ選択
     start_btn.addEventListener('click', ()=>{
       if(start_btn.classList.contains('disabled')){
@@ -49,7 +52,7 @@
         totte.classList.add('unselected');
         start_btn.classList.remove('disabled');
         // start_btn.onclick = location.href="play.html"
-        //↑これするとなでなで押したら画面遷移する
+        //↑これするとなでなで押したら即画面遷移する…???
         map.src = "img/map_nade.png"
       }else{
         return;
@@ -92,6 +95,16 @@
         map.src = "img/map_totte.png"
       }else{
         return;
+      }
+    });
+
+    //交代ボタン
+    inu_change.addEventListener('click', ()=>{
+      console.log('交代がクリックされました。');//ok
+      if(defInu.src = "img/gamestart_dog.png"){
+        defInu.src = "img/gamestart_dog_black2.png";
+      }else if(defInu.src = "img/gamestart_dog_black2.png"){
+        defInu.src = "img/gamestart_dog.png";
       }
     });
     

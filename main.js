@@ -291,16 +291,16 @@
       // scoreLabel.textContent = `うまくいった回数：${score}/${quiz.length}`;//スコアの表示
       
       if (score == 0) {//リンク先変更
-        fin.href = 'result_0.html';
+        fin.href = 'result0_nade.html';
       }
       else if (score == 1) {
-        fin.href = 'result_1.html';
+        fin.href = 'result1_nade.html';
       }
       else if (score == 2) {
-        fin.href = 'result_2.html';
+        fin.href = 'result2_nade.html';
       }
       else if (score == 3) {
-        fin.href = 'result_3.html';
+        fin.href = 'result3_nade.html';
       }
       
     }else{
@@ -310,5 +310,54 @@
     
   })
   
+  // ------------------リゾルト画面-----------------
+  let ED_nade = new Array(0,0,0,0);//ED回収したか配列
+  let ED_oyatsu = new Array(0,0,0,0);
+  let ED_tsuna = new Array(0,0,0,0);
+  let ED_totte = new Array(0,0,0,0);
+  const get0_nade = document.getElementById('get0_nade');
+  const get1_nade = document.getElementById('get1_nade');
+  const get2_nade = document.getElementById('get2_nade');
+  const get3_nade = document.getElementById('get3_nade');
+  let get_nade = [get0_nade, get1_nade, get2_nade, get3_nade];
+  
+  // function setData(){//肉球を表示させたり、肉球の個数をカウントする関数。
+  //   let cdata_nade = localStorage.getItem("clear_nade");
+  //   if ( cdata_nade != null ){
+  //     ED_nade = JSON.parse(cdata_nade);  //Storageのデータを配列に戻す???
+  //     for (var i = 0 ; i < 4 ; i++) {
+  //       if( ED_nade[i] == 1 ){
+  //         get_nade[i].src = "img/memory.png";
+  //       }
+  //     }
+  //   }
+
+  function getED(){//ED画面を読み込んだら0を1にする。
+    //なでなでゲームのED画面について
+    if(window.location.href.contains('0_nade')){
+      ED_nade[0] = 1;
+    }else if(window.location.href.contains('1_nade')){
+      ED_nade[1] = 1;
+    }else if(window.location.href.contains('2_nade')){
+      ED_nade[2] = 1;
+    }else if(window.location.href.contains('3_nade')){
+      ED_nade[3] = 1;
+    }//増やしたい
+    localStorage.setItem("clear_nade",JSON.stringify(ED_nade));//増やしたい
+    setData();
+  }
+
+  if(window.location.href.contains('result')){//どこかしらリゾルト画面にいたら。書き方合ってんのかな…？
+    window.onload = function(){
+      getED();
+      this.console.log(window.localStorage);
+    }
+  }
+
+  // --------------おもいで----------
+function complete(){//EDコンプ？？？
+
+}
+
 
 }

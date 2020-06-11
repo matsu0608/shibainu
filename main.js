@@ -334,7 +334,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
       ED_nade = JSON.parse(cdata_nade);  //Storageのデータを配列に戻す
         for (var i = 0 ; i < 4 ; i++) {
         if( ED_nade[i] == 1 ){
-          get_nade[i].src = "img/memory.png";//エラー
+          get_nade[i].src = "img/memory.png";//対応する表の<img src="">に代入したい。エラー Cannot set property 'src' of null
         }
       }
     }
@@ -367,6 +367,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   if(window.location.href.endsWith('memory.html')){//おもいで画面にいたら。
     window.onload = function(){
       console.log("おもいで画面です。");//ok
+      console.log(window.localStorage);//ok
       setData();//エラー
       console.log(window.localStorage);//出ない
     }

@@ -75,7 +75,7 @@ main{
    right: 30px;
    top: 0;
    /* animation: fadeIn 0.5s; */
-   animation: 7S linear infinite rotation;
+   animation: 2.5S ease-in-out infinite rotation ;
   } 
   /* @keyframes fadeIn {
     from {opacity: 0;}
@@ -128,41 +128,6 @@ main{
   position: absolute;
   left: 230px;
   top: 170px;
-}
-
-.slideOut{
-  opacity:0;
-  animation-name:sample01;
-  animation-duration:0.5s; 
-  /* animation-iteration-count: infinite; */
-  animation-fill-mode: forwards;
-}
-@keyframes sample01 {
-0%{
-  opacity: 1;
-  transform: translateX(0);
-}
- 100% {
- opacity:0;
- transform: translateX(100%);
- } 
-}
-.slideIn{
-  opacity:0;
-  animation-name:sample01;
-  animation-duration:0.5s; 
-  /* animation-iteration-count: infinite; */
-  animation-fill-mode: forwards;
-}
-@keyframes sample01 {
-0% {
- opacity: 0;
- transform: translateX(-30px);
-}
-  100%{
-    opacity: 1;
-     transform: translateX(0);
-  }
 }
 
 .defInu{

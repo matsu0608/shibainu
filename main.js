@@ -100,11 +100,13 @@
 
     //交代ボタン
     inu_change.addEventListener('click', ()=>{
-      console.log('交代がクリックされました。');//ok
-      if(defInu.src = "img/gamestart_dog.png"){
-        defInu.src = "img/gamestart_dog_black2.png";
-      }else if(defInu.src = "img/gamestart_dog_black2.png"){
-        defInu.src = "img/gamestart_dog.png";
+      if(defInu.classList.contains('chenged')){
+        defInu.classList.remove('chenged');
+        defInu.setAttribute('src', 'img/gamestart_dog.png');
+        return;
+      }else{
+        defInu.setAttribute('src', 'img/gamestart_dog_black.png');
+        defInu.classList.add('chenged');
       }
     });
     
@@ -307,7 +309,6 @@
     }
     
   })
-  
   
 
 }

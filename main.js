@@ -365,6 +365,11 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   }
 
   // --------------おもいで----------
+  const comp_nade = document.getElementById('comp_nade');
+  const comp_nade = document.getElementById('comp_nade');
+  const comp_nade = document.getElementById('comp_nade');
+  const comp_nade = document.getElementById('comp_nade');
+  
   if(window.location.href.endsWith('memory.html')){//おもいで画面にいたら。
     window.onload = function(){
       console.log("おもいで画面です。");//ok
@@ -375,7 +380,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     function complete(){//EDコンプ判定で「交代」可能化
       //ストレージに保存したキーで登録されている配列の長さ
       if(clear_nade.length === 4){
-        
+
       }
     }
 

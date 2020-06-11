@@ -33,7 +33,8 @@
     }
   // -----------------↓トップ画面---------------------
   const start_btn = document.getElementById('start');
-  if(window.location.href.endsWith('index.html')){
+
+  if(window.location.href.endsWith('index.html')){//トップ画面に居たら
     const modal_open = document.getElementById('modal_open');
     const modal_close = document.getElementById('modal_close');
     const modal_content = document.getElementById('modal_content');
@@ -161,7 +162,8 @@
 // --------ここまでトップ画面----------
 
 //-----------なでなでゲーム---------
-  
+if(window.location.href.endsWith('play.html')){//あそび画面に居たら
+
   //配列
   const quiz= shuffle([
     {q: 'img/head_dog.png', c: ['❤頭を撫でる','❤お腹を撫でる','❤首を撫でる']},//0問目
@@ -179,7 +181,7 @@
   let startTime;
   let timeoutId;
   
-
+  
     
     
     
@@ -190,7 +192,7 @@
       
       timer.textContent = `${s}`;
       timeoutId = setTimeout(()=>{countUp();}, 10);
-
+  
       //タイマーリセット条件・タイムオーバー処理
       if(isAnswered){//選択肢押したら
         clearTimeout(timeoutId);//タイマー停止。
@@ -260,7 +262,7 @@
         const li= document.createElement('li');//liをつくる
         
       li.textContent = choice;//liの文章に選択肢の文章を代入する。
-
+  
       li.addEventListener('click', ()=>{//選択肢がクリックされたら...
         checkAnswer(li);
         // li.classList.add("disabled_c");
@@ -293,16 +295,16 @@
       // scoreLabel.textContent = `うまくいった回数：${score}/${quiz.length}`;//スコアの表示
       
       if (score == 0) {//リンク先変更
-        fin.href = 'result0_nade.html';
+        fin.href = '0nade_result.html';
       }
       else if (score == 1) {
-        fin.href = 'result1_nade.html';
+        fin.href = '1nade_result.html';
       }
       else if (score == 2) {
-        fin.href = 'result2_nade.html';
+        fin.href = '2nade_result.html';
       }
       else if (score == 3) {
-        fin.href = 'result3_nade.html';
+        fin.href = '3nade_result.html';
       }
       
     }else{
@@ -311,23 +313,26 @@
     }
     
   })
+}
+
   
   // ------------------リゾルト画面-----------------
   let ED_nade = new Array(0,0,0,0);//ED回収したか配列
   let ED_oyatsu = new Array(0,0,0,0);
   let ED_tsuna = new Array(0,0,0,0);
   let ED_totte = new Array(0,0,0,0);
+  //↓「おもいで」なでなでゲームの<img>についているid
   const get0_nade = document.getElementById('get0_nade');
   const get1_nade = document.getElementById('get1_nade');
   const get2_nade = document.getElementById('get2_nade');
   const get3_nade = document.getElementById('get3_nade');
-  let get_nade = [get0_nade, get1_nade, get2_nade, get3_nade];
+  let get_nade = [get0_nade, get1_nade, get2_nade, get3_nade];//<img>の配列
   
-  function setData(){//肉球を表示させたり、肉球の個数をカウントする関数。
+  function setData(){//肉球を表示させる関数。
     let cdata_nade = localStorage.getItem("clear_nade");
     if ( cdata_nade != null ){
-      ED_nade = JSON.parse(cdata_nade);  //Storageのデータを配列に戻す???
-      for (var i = 0 ; i < 4 ; i++) {
+      ED_nade = JSON.parse(cdata_nade);  //Storageのデータを配列に戻す
+        for (var i = 0 ; i < 4 ; i++) {
         if( ED_nade[i] == 1 ){
           get_nade[i].src = "img/memory.png";
         }
@@ -335,8 +340,9 @@
     }
   }
 
-  function getED(){//ED画面を読み込んだら0を1にする。
-    //なでなでゲームのED画面について
+  function getED(){//回収配列の中身0を1にする。
+    //なでなでゲームのED画面urlによって
+    //書き方？？？？？？？？？？
     if(window.location.href.contains('0_nade')){
       ED_nade[0] = 1;
     }else if(window.location.href.contains('1_nade')){
@@ -345,23 +351,31 @@
       ED_nade[2] = 1;
     }else if(window.location.href.contains('3_nade')){
       ED_nade[3] = 1;
-    }//増やしたい
-    localStorage.setItem("clear_nade",JSON.stringify(ED_nade));//増やしたい
-    setData();
+    }
+    localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
+    // clear_nadeというキーで回収配列を保存したい。
   }
 
-  if(window.location.href.contains('result')){//どこかしらリゾルト画面にいたら。書き方合ってんのかな…？
+  if(window.location.href.endsWith('result.html')){//どこかしらリゾルト画面にいたら。書き方？？？？？
     window.onload = function(){
-      console.log("リゾルト画面です。");
+      console.log("リゾルト画面です。");//ok
       getED();
-      console.log(window.localStorage);
+      console.log(window.localStorage);//出ない。
     }
   }
 
   // --------------おもいで----------
-function complete(){//EDコンプ？？？
+  if(window.location.href.endsWith('memory.html')){//おもいで画面にいたら。
+    window.onload = function(){
+      console.log("おもいで画面です。");//ok
+      setData();
+      console.log(window.localStorage);//ok
+    }
+    function complete(){//EDコンプ判定で「交代」可能化
+  
+    }
+  }
 
-}
 
 
 }

@@ -317,6 +317,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
   
   // ------------------リゾルト画面-----------------
+
   let ED_nade = new Array(0,0,0,0);//ED回収したか配列
   let ED_oyatsu = new Array(0,0,0,0);
   let ED_tsuna = new Array(0,0,0,0);
@@ -327,7 +328,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   const get2_nade = document.getElementById('get2_nade');
   const get3_nade = document.getElementById('get3_nade');
   let get_nade = [get0_nade, get1_nade, get2_nade, get3_nade];//<img>の配列
-  
+
   function setData(){//肉球を表示させる関数。
     let cdata_nade = localStorage.getItem("clear_nade");
     if ( cdata_nade != null ){
@@ -372,8 +373,12 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
       console.log(window.localStorage);//出ない
     }
     function complete(){//EDコンプ判定で「交代」可能化
-  
+      //ストレージに保存したキーで登録されている配列の長さ
+      if(clear_nade.length === 4){
+        
+      }
     }
+
   }
 
 

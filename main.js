@@ -12,6 +12,25 @@
   // -----------------↓スコア❤---------------------
   const scoreHeart = document.getElementById('score❤');
   
+  
+  // //クリックエフェクト
+  document.body.addEventListener("click", drop, false);
+  function drop(e) {
+    //座標の取得
+    var x = e.pageX;
+    var y = e.pageY;
+    //しずくになるdivの生成、座標の設定
+        var sizuku = document.createElement("div");
+        sizuku.style.top = y + "px";
+        sizuku.style.left = x + "px";
+        document.body.appendChild(sizuku);
+        //アニメーションをする className を付ける
+        sizuku.className = "sizuku";
+        //アニメーションが終わった事を感知してしずくを remove する
+        sizuku.addEventListener("animationend", function() {
+            this.parentNode.removeChild(this);
+        }, false);
+    }
   // -----------------↓トップ画面---------------------
   const start_btn = document.getElementById('start');
   if(window.location.href.endsWith('index.html')){
@@ -140,6 +159,8 @@
 
   }
 // --------ここまでトップ画面----------
+
+//-----------なでなでゲーム---------
   
   //配列
   const quiz= shuffle([
@@ -158,25 +179,6 @@
   let startTime;
   let timeoutId;
   
-  
-  // //クリックエフェクト
-  document.body.addEventListener("click", drop, false);
-  function drop(e) {
-    //座標の取得
-    var x = e.pageX;
-    var y = e.pageY;
-    //しずくになるdivの生成、座標の設定
-        var sizuku = document.createElement("div");
-        sizuku.style.top = y + "px";
-        sizuku.style.left = x + "px";
-        document.body.appendChild(sizuku);
-        //アニメーションをする className を付ける
-        sizuku.className = "sizuku";
-        //アニメーションが終わった事を感知してしずくを remove する
-        sizuku.addEventListener("animationend", function() {
-            this.parentNode.removeChild(this);
-        }, false);
-    }
 
     
     
@@ -321,16 +323,17 @@
   const get3_nade = document.getElementById('get3_nade');
   let get_nade = [get0_nade, get1_nade, get2_nade, get3_nade];
   
-  // function setData(){//肉球を表示させたり、肉球の個数をカウントする関数。
-  //   let cdata_nade = localStorage.getItem("clear_nade");
-  //   if ( cdata_nade != null ){
-  //     ED_nade = JSON.parse(cdata_nade);  //Storageのデータを配列に戻す???
-  //     for (var i = 0 ; i < 4 ; i++) {
-  //       if( ED_nade[i] == 1 ){
-  //         get_nade[i].src = "img/memory.png";
-  //       }
-  //     }
-  //   }
+  function setData(){//肉球を表示させたり、肉球の個数をカウントする関数。
+    let cdata_nade = localStorage.getItem("clear_nade");
+    if ( cdata_nade != null ){
+      ED_nade = JSON.parse(cdata_nade);  //Storageのデータを配列に戻す???
+      for (var i = 0 ; i < 4 ; i++) {
+        if( ED_nade[i] == 1 ){
+          get_nade[i].src = "img/memory.png";
+        }
+      }
+    }
+  }
 
   function getED(){//ED画面を読み込んだら0を1にする。
     //なでなでゲームのED画面について
@@ -349,8 +352,9 @@
 
   if(window.location.href.contains('result')){//どこかしらリゾルト画面にいたら。書き方合ってんのかな…？
     window.onload = function(){
+      console.log("リゾルト画面です。");
       getED();
-      this.console.log(window.localStorage);
+      console.log(window.localStorage);
     }
   }
 

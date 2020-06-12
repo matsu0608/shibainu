@@ -362,6 +362,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     // }
 
       if(window.location.href.match(/0nade/)){
+        localStorage.getItem("clear_nade");
         console.log('0です');
         ED_nade[0] = 1;
         console.log(ED_nade);
@@ -381,6 +382,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
         console.log('追加しました');
         return;
       }else if(window.location.href.match(/3nade/)){
+        console.log('3です');
         ED_nade[3] = 1;
         localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
         console.log('追加しました');

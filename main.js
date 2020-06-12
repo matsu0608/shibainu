@@ -120,6 +120,10 @@
 
     //交代ボタン
     inu_change.addEventListener('click', ()=>{
+      if(inu_change.classList.contains('disabled')){
+        console.log('「おもいで」が不足しています。');
+        return;
+      }
       if(defInu.classList.contains('chenged')){
         defInu.classList.remove('chenged');
         defInu.setAttribute('src', 'img/gamestart_dog.png');
@@ -332,62 +336,62 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   let get_nade = [get0_nade, get1_nade, get2_nade, get3_nade];//<img>の配列
 
   function setData(){//肉球を表示させる関数。
-    let cdata_nade = localStorage.getItem("clear_nade");
+    let cdata_nade = localStorage.getItem("clear_nade");//ローカルストレージに保存した配列。初期{0,0,0,0}
+    let cdata_oyatsu = localStorage.getItem("clear_oyatsu");
+    let cdata_tsuna = localStorage.getItem("clear_tsuna");
+    let cdata_totte = localStorage.getItem("clear_totte");
+
     if ( cdata_nade != null ){
       ED_nade = JSON.parse(cdata_nade);  //Storageのデータを配列に戻す
         for (var i = 0 ; i < 4 ; i++) {
         if( ED_nade[i] == 1 ){
-          get_nade[i].src = "img/memory.png";//対応する表の<img src="">に代入したい。
-        }
-      }
-    }
+          get_nade[i].src = "img/memory.png";//対応する表の<img src="">に代入。
+        }}}
+    if ( cdata_oyatsu != null ){
+      ED_oyatsu = JSON.parse(cdata_oyatsu);  //Storageのデータを配列に戻す
+        for (var i = 0 ; i < 4 ; i++) {
+        if( ED_oyatsu[i] == 1 ){
+          get_oyatsu[i].src = "img/memory.png";//対応する表の<img src="">に代入。
+        }}}
+    if ( cdata_tsuna != null ){
+      ED_tsuna = JSON.parse(cdata_tsuna);  //Storageのデータを配列に戻す
+        for (var i = 0 ; i < 4 ; i++) {
+        if( ED_tsuna[i] == 1 ){
+          get_tsuna[i].src = "img/memory.png";//対応する表の<img src="">に代入。
+        }}}
+    if ( cdata_totte != null ){
+      ED_totte = JSON.parse(cdata_totte);  //Storageのデータを配列に戻す
+        for (var i = 0 ; i < 4 ; i++) {
+        if( ED_totte[i] == 1 ){
+          get_totte[i].src = "img/memory.png";//対応する表の<img src="">に代入。
+        }}}
   }
 
   function getED(){//回収配列の中身0を1にする。
 
-      // ED_nade[0] = 0;
-      // ED_nade[1] = 0;
-      // ED_nade[2] = 0;
-      // ED_nade[3] = 0;
-
-    //なでなでゲームのED画面urlによって
-    // if(window.location.href.indexOf('0nade')){
-    //   ED_nade[0] = 1;
-    // }else if(window.location.href.indexOf('1nade')){
-    //   ED_nade[1] = 1;
-    // }else if(window.location.href.indexOf('2nade')){
-    //   ED_nade[2] = 1;
-    // }else if(window.location.href.indexOf('3nade')){
-    //   ED_nade[3] = 1;
-    // }
-
+    //なでなでurlで
       if(window.location.href.match(/0nade/)){
         // localStorage.getItem("clear_nade");
-        console.log('0です');
         ED_nade[0] = 1;
         console.log(ED_nade);
         localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
-        console.log('追加しました');
         return;
       }else if(window.location.href.match(/1nade/)){
-        console.log('1です');
         ED_nade[1] = 1;
         localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
-        console.log('追加しました');
         return;
       }else if(window.location.href.match(/2nade/)){
-        console.log('2です');
         ED_nade[2] = 1;
         localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
-        console.log('追加しました');
         return;
       }else if(window.location.href.match(/3nade/)){
-        console.log('3です');
         ED_nade[3] = 1;
         localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
-        console.log('追加しました');
         return;
       }
+      //おやつあて
+      //つなひき
+      //とってこい
   }
 
   if(window.location.href.endsWith('result.html')){//どこかしらリゾルト画面にいたら。
@@ -399,10 +403,12 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   }
 
   // --------------おもいで----------
+
+  //「complete!」ってやつ
   const comp_nade = document.getElementById('comp_nade');
-  // const comp_nade = document.getElementById('comp_nade');
-  // const comp_nade = document.getElementById('comp_nade');
-  // const comp_nade = document.getElementById('comp_nade');
+  const comp_oyatsu = document.getElementById('comp_oyatsu');
+  const comp_tsuna = document.getElementById('comp_tsuna');
+  const comp_totte = document.getElementById('comp_totte');
   
   if(window.location.href.endsWith('memory.html')){//おもいで画面にいたら。
     window.onload = function(){
@@ -411,12 +417,38 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
       setData();//ok
       console.log(window.localStorage);//ok
     }
-    function complete(){//EDコンプ判定で「交代」可能化
-      //ストレージに保存したキーで登録されている配列の長さ
-      if(clear_nade.length === 4){
 
+    let tofullComplete = [0,0,0,0];//EDコンプカウント初期形
+    let fullComplete = [1,1,1,1];//完成形。比較用。
+
+    function complete(){//？？　各ゲームがフルコンプしたら0⇒1
+      //ストレージに保存したキーで登録されている配列の長さ でいいの？？？
+      if(clear_nade.length == 4){
+        comp_nade.classList.remove('hidden');
+        tofullComplete[0]  = 1;
+      }
+      if(clear_oyatsu.length == 4){
+        comp_oyatsu.classList.remove('hidden');
+        tofullComplete[1]  = 1;
+      }
+      if(clear_tsuna.length == 4){
+        comp_tsuna.classList.remove('hidden');
+        tofullComplete[2]  = 1;
+      }
+      if(clear_totte.length == 4){
+        comp_totte.classList.remove('hidden');
+        tofullComplete[3]  = 1;
       }
     }
+
+    function fullComp(){//{1,1,1,1}したら「交代」可
+      if(tofullComplete == fullComplete){
+        inu_change.classList.remove('disabled');
+      }
+    }
+
+    complete();
+    fullComp();
 
   }
 

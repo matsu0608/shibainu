@@ -324,19 +324,63 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   
   // ------------------リゾルト画面-----------------
 
-  let ED_nade = new Array(0,0,0,0);//ED回収したか配列
-  let ED_oyatsu = new Array(0,0,0,0);
-  let ED_tsuna = new Array(0,0,0,0);
-  let ED_totte = new Array(0,0,0,0);
+  //ED回収したか配列
+  let ED_nade;
+  let n = localStorage.getItem("clear_nade");
+  if (!n) {
+    ED_nade = new Array(0,0,0,0);
+  } else {
+    ED_nade = JSON.parse(n);
+  }
+  let ED_oyatsu;
+  let o = localStorage.getItem("clear_oyatsu");
+  if (!o) {
+    ED_oyatsu = new Array(0,0,0,0);
+  } else {
+    ED_oyatsu = JSON.parse(o);
+  }
+  let ED_tsuna;
+  let tsu = localStorage.getItem("clear_tsuna");
+  if (!tsu) {
+    ED_tsuna = new Array(0,0,0,0);
+  } else {
+    ED_tsuna = JSON.parse(tsu);
+  }
+  let ED_totte;
+  let to = localStorage.getItem("clear_totte");
+  if (!to) {
+    ED_totte = new Array(0,0,0,0);
+  } else {
+    ED_totte = JSON.parse(to);
+  }
+
   //↓「おもいで」なでなでゲームの<img>についているid
   const get0_nade = document.getElementById('get0_nade');
   const get1_nade = document.getElementById('get1_nade');
   const get2_nade = document.getElementById('get2_nade');
   const get3_nade = document.getElementById('get3_nade');
   let get_nade = [get0_nade, get1_nade, get2_nade, get3_nade];//<img>の配列
+  //↓「おもいで」おやつゲームの<img>についているid
+  const get0_oyatsu = document.getElementById('get0_oyatsu');
+  const get1_oyatsu = document.getElementById('get1_oyatsu');
+  const get2_oyatsu = document.getElementById('get2_oyatsu');
+  const get3_oyatsu = document.getElementById('get3_oyatsu');
+  let get_oyatsu = [get0_oyatsu, get1_oyatsu, get2_oyatsu, get3_oyatsu];//<img>の配列
+  //↓「おもいで」つなひきゲームの<img>についているid
+  const get0_tsuna = document.getElementById('get0_tsuna');
+  const get1_tsuna = document.getElementById('get1_tsuna');
+  const get2_tsuna = document.getElementById('get2_tsuna');
+  const get3_tsuna = document.getElementById('get3_tsuna');
+  let get_tsuna = [get0_tsuna, get1_tsuna, get2_tsuna, get3_tsuna];//<img>の配列
+  //↓「おもいで」とってこいゲームの<img>についているid
+  const get0_totte = document.getElementById('get0_totte');
+  const get1_totte = document.getElementById('get1_totte');
+  const get2_totte = document.getElementById('get2_totte');
+  const get3_totte = document.getElementById('get3_totte');
+  let get_totte = [get0_totte, get1_totte, get2_totte, get3_totte];//<img>の配列
 
-  function setData(){//肉球を表示させる関数。
-    let cdata_nade = localStorage.getItem("clear_nade");//ローカルストレージに保存した配列。初期{0,0,0,0}
+  function setData()                      {//肉球を表示させる関数。
+    let cdata_nade = localStorage.getItem("clear_nade");//ローカルストレージに保存した配列キー。初期{0,0,0,0}
     let cdata_oyatsu = localStorage.getItem("clear_oyatsu");
     let cdata_tsuna = localStorage.getItem("clear_tsuna");
     let cdata_totte = localStorage.getItem("clear_totte");
@@ -367,32 +411,39 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
         }}}
   }
 
-  function getED(){//回収配列の中身0を1にする。
+  function getED(){//EDをみたら配列の中身0を1にする。
 
     //なでなでurlで
-      if(window.location.href.match(/0nade/)){
+      if(window.location.href.match(/0nade/)){//{1,x,x,x}
         // localStorage.getItem("clear_nade");
         ED_nade[0] = 1;
         console.log(ED_nade);
         localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
         return;
-      }else if(window.location.href.match(/1nade/)){
+      }else if(window.location.href.match(/1nade/)){//{x,1,x,x}
         ED_nade[1] = 1;
         localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
         return;
-      }else if(window.location.href.match(/2nade/)){
+      }else if(window.location.href.match(/2nade/)){//{x,x,1,x}
         ED_nade[2] = 1;
         localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
         return;
-      }else if(window.location.href.match(/3nade/)){
+      }else if(window.location.href.match(/3nade/)){//{x,x,x,1}
         ED_nade[3] = 1;
         localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
         return;
       }
-      //おやつあて
-      //つなひき
-      //とってこい
-  }
+      // //おやつあて
+      // ED_oyatsu[0] = 1;
+      // localStorage.setItem("clear_oyatsu",JSON.stringify(ED_oyatsu));
+      // //つなひき
+      // ED_tsuna = [1,1,1,1];
+      // localStorage.setItem("clear_tsuna",JSON.stringify(ED_tsuna));
+      // //とってこい
+      // ED_totte = [1,1,1,1];
+      // localStorage.setItem("clear_totte",JSON.stringify(ED_totte));
+
+    }
 
   if(window.location.href.endsWith('result.html')){//どこかしらリゾルト画面にいたら。
     window.onload = function(){
@@ -411,6 +462,18 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   const comp_totte = document.getElementById('comp_totte');
   
   if(window.location.href.endsWith('memory.html')){//おもいで画面にいたら。
+    
+        //ゲーム実装したら消す。
+          //おやつあて
+          ED_oyatsu = [1,1,1,1];
+          localStorage.setItem("clear_oyatsu",JSON.stringify(ED_oyatsu));
+          //つなひき
+          ED_tsuna = [1,1,1,1];
+          localStorage.setItem("clear_tsuna",JSON.stringify(ED_tsuna));
+          //とってこい
+          ED_totte = [1,1,1,1];
+          localStorage.setItem("clear_totte",JSON.stringify(ED_totte));
+
     window.onload = function(){
       console.log("おもいで画面です。");//ok
       console.log(window.localStorage);//ok
@@ -421,24 +484,24 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     let tofullComplete = [0,0,0,0];//EDコンプカウント初期形
     let fullComplete = [1,1,1,1];//完成形。比較用。
 
-    function complete(){//？？　各ゲームがフルコンプしたら0⇒1
+    function complete(){//？？各ゲームがフルコンプしたら0⇒1
       //ストレージに保存したキーで登録されている配列の長さ でいいの？？？
-      if(clear_nade.length == 4){
-        comp_nade.classList.remove('hidden');
-        tofullComplete[0]  = 1;
-      }
-      if(clear_oyatsu.length == 4){
-        comp_oyatsu.classList.remove('hidden');
-        tofullComplete[1]  = 1;
-      }
-      if(clear_tsuna.length == 4){
-        comp_tsuna.classList.remove('hidden');
-        tofullComplete[2]  = 1;
-      }
-      if(clear_totte.length == 4){
-        comp_totte.classList.remove('hidden');
-        tofullComplete[3]  = 1;
-      }
+      // if(clear_nade.length == 4){
+      //   comp_nade.classList.remove('hidden');
+      //   tofullComplete[0]  = 1;
+      // }
+      // if(clear_oyatsu.length == 4){
+      //   comp_oyatsu.classList.remove('hidden');
+      //   tofullComplete[1]  = 1;
+      // }
+      // if(clear_tsuna.length == 4){
+      //   comp_tsuna.classList.remove('hidden');
+      //   tofullComplete[2]  = 1;
+      // }
+      // if(clear_totte.length == 4){
+      //   comp_totte.classList.remove('hidden');
+      //   tofullComplete[3]  = 1;
+      // }
     }
 
     function fullComp(){//{1,1,1,1}したら「交代」可
@@ -449,6 +512,37 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
     complete();
     fullComp();
+
+    //リセットボタン
+    const reset_btn = document.getElementById('reset_btn');
+    const modal_reset = document.getElementById('modal_reset');
+    const yes_reset = document.getElementById('yes_reset');
+    const no_reset = document.getElementById('no_reset');
+    
+    reset_btn.addEventListener('click', ()=>{
+      modal_reset.classList.remove('hidden');
+    });
+    no_reset.addEventListener('click', ()=>{
+      modal_reset.classList.add('hidden');
+    });
+    yes_reset.addEventListener('click', ()=>{
+        //なでなで
+        ED_nade = [0,0,0,0];
+        localStorage.setItem("clear_nade",JSON.stringify (ED_nade));
+        //おやつあて
+        ED_oyatsu = [0,0,0,0];
+        localStorage.setItem("clear_oyatsu",JSON.stringify (ED_oyatsu));
+        //つなひき
+        ED_tsuna = [0,0,0,0];
+        localStorage.setItem("clear_tsuna",JSON.stringify(ED_tsuna));
+        //とってこい
+        ED_totte = [0,0,0,0];
+        localStorage.setItem("clear_totte",JSON.stringify(ED_totte));
+        console.log('リセットしました。');
+      modal_reset.classList.add('hidden');
+    });
+
+
 
   }
 

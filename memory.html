@@ -9,6 +9,11 @@
 </head>
 <body>
   <header>
+    <div id="modal_reset" class="hidden">
+        <p>本当にリセットしますか？</p>
+        <button id="yes_reset" type="button">はい</button>
+        <button id="no_reset" class="no" type="button">いいえ</button>
+    </div>
     <h1>おもいで</h1>
   </header>
   <main>
@@ -49,19 +54,19 @@
         </tr>
         <tr>
           <td>score0</td>
-          <td class="td_img"><img class="memory_niku" src=""></td>
+          <td class="td_img"><img id="get0_oyatsu" class="memory_niku" src=""></td>
         </tr>
         <tr>
           <td>score1</td>
-          <td class="td_img"><img class="memory_niku" src=""></td>
+          <td class="td_img"><img id="get1_oyatsu" class="memory_niku" src=""></td>
         </tr>
         <tr>
           <td>score2</td>
-          <td class="td_img"><img class="memory_niku" src=""></td>
+          <td class="td_img"><img id="get2_oyatsu" class="memory_niku" src=""></td>
         </tr>
         <tr>
           <td>score3</td>
-          <td class="td_img"><img class="memory_niku" src=""></td>
+          <td class="td_img"><img id="get3_oyatsu" class="memory_niku" src=""></td>
         </tr>
       </table>
       <table class="tsuna" align="center">
@@ -71,19 +76,19 @@
         </tr>
         <tr>
           <td>score0</td>
-          <td class="td_img"><img class="memory_niku" src=""></td>
+          <td class="td_img"><img id="get0_tsuna" class="memory_niku" src=""></td>
         </tr>
         <tr>
           <td>score1</td>
-          <td class="td_img"><img class="memory_niku" src=""></td>
+          <td class="td_img"><img id="get1_tsuna" class="memory_niku" src=""></td>
         </tr>
         <tr>
           <td>score2</td>
-          <td class="td_img"><img class="memory_niku" src=""></td>
+          <td class="td_img"><img id="get2_tsuna" class="memory_niku" src=""></td>
         </tr>
         <tr>
           <td>score3</td>
-          <td class="td_img"><img class="memory_niku" src=""></td>
+          <td class="td_img"><img id="get3_tsuna" class="memory_niku" src=""></td>
         </tr>
       </table>
       <table class="totte" align="center">
@@ -93,19 +98,19 @@
         </tr>
         <tr>
           <td>score0</td>
-          <td class="td_img"><img id="memory_niku" src=""></td>
+          <td class="td_img"><img id="get0_totte" class="memory_niku" src=""></td>
         </tr>
         <tr>
           <td>score1</td>
-          <td class="td_img"><img id="memory_niku" src=""></td>
+          <td class="td_img"><img id="get1_totte" class="memory_niku" src=""></td>
         </tr>
         <tr>
           <td>score2</td>
-          <td class="td_img"><img id="memory_niku" src=""></td>
+          <td class="td_img"><img id="get2_totte" class="memory_niku" src=""></td>
         </tr>
         <tr>
           <td>score3</td>
-          <td class="td_img"><img id="memory_niku" src=""></td>
+          <td class="td_img"><img id="get3_totte" class="memory_niku" src=""></td>
         </tr>
       </table>
     </section>
@@ -122,7 +127,7 @@
     <h6>! あそびを終えると「おもいで」が増えます。</h6>
     <h6>! すべての「おもいで」を入手すると、柴犬の種類がえらべるようになります。</h6>
     <button id="memory_fin" class="fin" type="submit" onclick='location.href="index.html"'>もどる</button>
-    <button id="reset" type="button">リセット</button>
+    <button id="reset_btn" type="button">リセット</button>
   </footer>
   <script src="main.js"></script>
 </body>

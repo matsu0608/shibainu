@@ -28,12 +28,14 @@
         sizuku.className = "sizuku";
         //アニメーションが終わった事を感知してしずくを remove する
         sizuku.addEventListener("animationend", function() {
-            this.parentNode.removeChild(this);
+          this.parentNode.removeChild(this);
         }, false);
-    }
-  // -----------------↓トップ画面---------------------
-  const start_btn = document.getElementById('start');
-  const inu_change = document.getElementById('inu_change');
+      }
+      // -----------------↓トップ画面---------------------
+      const start_btn = document.getElementById('start');
+      const inu_change = document.getElementById('inu_change');
+      let tofullComplete = [0,0,0,0];//EDコンプカウント初期形
+      let fullComplete = [1,1,1,1];//完成形。比較用。
 
   if(window.location.href.endsWith('index.html')){//トップ画面に居たら
     const modal_open = document.getElementById('modal_open');
@@ -117,9 +119,7 @@
         return;
       }
     });
-    
-    let tofullComplete = [0,0,0,0];//EDコンプカウント初期形
-    let fullComplete = [1,1,1,1];//完成形。比較用。
+
     
     //交代ボタン
     function fullComp(){//tofullComplete{}ストレージの"clear_all"{1,1,1,1}なら「交代」可

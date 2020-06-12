@@ -33,6 +33,7 @@
     }
   // -----------------↓トップ画面---------------------
   const start_btn = document.getElementById('start');
+  const inu_change = document.getElementById('inu_change');
 
   if(window.location.href.endsWith('index.html')){//トップ画面に居たら
     const modal_open = document.getElementById('modal_open');
@@ -52,7 +53,6 @@
     const slide_btn_totte = document.getElementById('slide_btn_totte');
     const map = document.getElementById('map');
 
-    const inu_change = document.getElementById('inu_change');
     const defInu = document.getElementById('defInu');
 
     //ステージ選択
@@ -484,33 +484,38 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     let tofullComplete = [0,0,0,0];//EDコンプカウント初期形
     let fullComplete = [1,1,1,1];//完成形。比較用。
 
-    function complete(){//？？各ゲームがフルコンプしたら0⇒1
-      //ストレージに保存したキーで登録されている配列の長さ でいいの？？？
-      // if(clear_nade.length == 4){
-      //   comp_nade.classList.remove('hidden');
-      //   tofullComplete[0]  = 1;
-      // }
-      // if(clear_oyatsu.length == 4){
-      //   comp_oyatsu.classList.remove('hidden');
-      //   tofullComplete[1]  = 1;
-      // }
-      // if(clear_tsuna.length == 4){
-      //   comp_tsuna.classList.remove('hidden');
-      //   tofullComplete[2]  = 1;
-      // }
-      // if(clear_totte.length == 4){
-      //   comp_totte.classList.remove('hidden');
-      //   tofullComplete[3]  = 1;
-      // }
+    function complete(){//？？各ゲームでフルコンプしたら0⇒1
+      if(ED_nade.toString() == fullComplete.toString()){
+        console.log('なでなでフルコンプ');
+        comp_nade.classList.remove('not_complete');
+        tofullComplete[0]  = 1;
+      }
+      if(ED_oyatsu.toString() == fullComplete.toString()){
+        console.log('おやつあてフルコンプ');
+        comp_oyatsu.classList.remove('not_complete');
+        tofullComplete[1]  = 1;
+      }
+      if(ED_tsuna.toString() == fullComplete.toString()){
+        console.log('つなひきフルコンプ');
+        comp_tsuna.classList.remove('not_complete');
+        tofullComplete[2]  = 1;
+      }
+      if(ED_totte.toString() == fullComplete.toString()){
+        console.log('とってこいフルコンプ');
+        comp_totte.classList.remove('not_complete');
+        tofullComplete[3]  = 1;
+      }
+      console.log(tofullComplete);//ok
     }
 
     function fullComp(){//{1,1,1,1}したら「交代」可
-      if(tofullComplete == fullComplete){
+      if(tofullComplete.toString() == fullComplete.toString()){
         inu_change.classList.remove('disabled');
       }
     }
 
     complete();
+    console.log('コンプ関数した');//ok
     fullComp();
 
     //リセットボタン

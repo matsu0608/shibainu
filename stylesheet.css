@@ -423,6 +423,9 @@ h6{
 .complete{
   margin-bottom: 10px;
 }
+.not_complete{
+  opacity: 0;
+}
 h5{
   width: 100px;
   display: inline-block; 

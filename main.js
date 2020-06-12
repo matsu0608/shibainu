@@ -362,7 +362,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     // }
 
       if(window.location.href.match(/0nade/)){
-        localStorage.getItem("clear_nade");
+        // localStorage.getItem("clear_nade");
         console.log('0です');
         ED_nade[0] = 1;
         console.log(ED_nade);

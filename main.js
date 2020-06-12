@@ -117,8 +117,23 @@
         return;
       }
     });
-
+    
+    let tofullComplete = [0,0,0,0];//EDコンプカウント初期形
+    let fullComplete = [1,1,1,1];//完成形。比較用。
+    
     //交代ボタン
+    function fullComp(){//tofullComplete{}ストレージの"clear_all"{1,1,1,1}なら「交代」可
+      //ストレージから取得したい。
+      let cdata_all = localStorage.getItem("clear_all");
+      if ( cdata_all != null ){
+        tofullComplete = JSON.parse(cdata_all);  //Storageのデータを配列に戻す
+        if(tofullComplete.toString() == fullComplete.toString()){
+          inu_change.classList.remove('disabled');
+        }
+      }
+    }
+    fullComp();
+
     inu_change.addEventListener('click', ()=>{
       if(inu_change.classList.contains('disabled')){
         console.log('「おもいで」が不足しています。');
@@ -461,6 +476,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   const comp_tsuna = document.getElementById('comp_tsuna');
   const comp_totte = document.getElementById('comp_totte');
   
+  
   if(window.location.href.endsWith('memory.html')){//おもいで画面にいたら。
     
         //ゲーム実装したら消す。
@@ -476,15 +492,13 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
     window.onload = function(){
       console.log("おもいで画面です。");//ok
-      console.log(window.localStorage);//ok
+      // console.log(window.localStorage);//ok
       setData();//ok
-      console.log(window.localStorage);//ok
+      // console.log(window.localStorage);//ok
     }
 
-    let tofullComplete = [0,0,0,0];//EDコンプカウント初期形
-    let fullComplete = [1,1,1,1];//完成形。比較用。
 
-    function complete(){//？？各ゲームでフルコンプしたら0⇒1
+    function complete(){//各ゲームでフルコンプしたら0⇒1
       if(ED_nade.toString() == fullComplete.toString()){
         console.log('なでなでフルコンプ');
         comp_nade.classList.remove('not_complete');
@@ -506,17 +520,21 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
         tofullComplete[3]  = 1;
       }
       console.log(tofullComplete);//ok
+      //ストレージにtofullCompleteを保存したい。
+      localStorage.setItem("clear_all",JSON.stringify(tofullComplete));
+      console.log(window.localStorage);
+
     }
 
-    function fullComp(){//{1,1,1,1}したら「交代」可
-      if(tofullComplete.toString() == fullComplete.toString()){
-        inu_change.classList.remove('disabled');
-      }
-    }
+    // function fullComp(){//{1,1,1,1}したら「交代」可
+    //   if(tofullComplete.toString() == fullComplete.toString()){
+    //     inu_change.classList.remove('disabled');
+    //   }
+    // }
 
     complete();
     console.log('コンプ関数した');//ok
-    fullComp();
+    // fullComp();
 
     //リセットボタン
     const reset_btn = document.getElementById('reset_btn');

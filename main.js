@@ -180,30 +180,32 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   // -----------------↓タイマー---------------------
   let startTime;
   let timeoutId;
-  
-  
-    
-    
+  let timeLimit = 6*1000 ;
     
     //タイマーのカウントアップ関数
     function countUp(){
-      const d = new Date(Date.now() - startTime);
+      const d = new Date(startTime + timeLimit - Date.now());
       const s = String(d.getSeconds()).padStart(1,'0');
       
       timer.textContent = `${s}`;
       timeoutId = setTimeout(()=>{countUp();}, 10);
+    // function countUp(){
+    //   const d = new Date(Date.now() - startTime);
+    //   const s = String(d.getSeconds()).padStart(1,'0');
+      
+    //   timer.textContent = `${s}`;
+    //   timeoutId = setTimeout(()=>{countUp();}, 10);
   
       //タイマーリセット条件・タイムオーバー処理
       if(isAnswered){//選択肢押したら
         clearTimeout(timeoutId);//タイマー停止。
         timer.textContent = "5";//タイマー表示を5に戻す。
-      }else if(timer.textContent === "5"){//5秒経ったら
+      }else if(timer.textContent === "59"){//5秒経ったら
         clearTimeout(timeoutId);//タイマー停止。
         isAnswered = true;//選択肢を押せなくなる。
         btn.classList.remove("disabled");//「つぎ」を押せるようにする。
         
-      }
-      
+      }     
     }
     
     window.onload = function(){//画面を読み込んだらタイマースタート 
@@ -335,25 +337,55 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
       ED_nade = JSON.parse(cdata_nade);  //Storageのデータを配列に戻す
         for (var i = 0 ; i < 4 ; i++) {
         if( ED_nade[i] == 1 ){
-          get_nade[i].src = "img/memory.png";//対応する表の<img src="">に代入したい。エラー Cannot set property 'src' of null
+          get_nade[i].src = "img/memory.png";//対応する表の<img src="">に代入したい。
         }
       }
     }
   }
 
   function getED(){//回収配列の中身0を1にする。
+
+      // ED_nade[0] = 0;
+      // ED_nade[1] = 0;
+      // ED_nade[2] = 0;
+      // ED_nade[3] = 0;
+
     //なでなでゲームのED画面urlによって
-    if(window.location.href.indexOf('0_nade')){
-      ED_nade[0] = 1;
-    }else if(window.location.href.indexOf('1_nade')){
-      ED_nade[1] = 1;
-    }else if(window.location.href.indexOf('2_nade')){
-      ED_nade[2] = 1;
-    }else if(window.location.href.indexOf('3_nade')){
-      ED_nade[3] = 1;
-    }
-    localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
-    // clear_nadeというキーで回収配列を保存したい。ok
+    // if(window.location.href.indexOf('0nade')){
+    //   ED_nade[0] = 1;
+    // }else if(window.location.href.indexOf('1nade')){
+    //   ED_nade[1] = 1;
+    // }else if(window.location.href.indexOf('2nade')){
+    //   ED_nade[2] = 1;
+    // }else if(window.location.href.indexOf('3nade')){
+    //   ED_nade[3] = 1;
+    // }
+
+      if(window.location.href.match(/0nade/)){
+        console.log('0です');
+        ED_nade[0] = 1;
+        console.log(ED_nade);
+        localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
+        console.log('追加しました');
+        return;
+      }else if(window.location.href.match(/1nade/)){
+        console.log('1です');
+        ED_nade[1] = 1;
+        localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
+        console.log('追加しました');
+        return;
+      }else if(window.location.href.match(/2nade/)){
+        console.log('2です');
+        ED_nade[2] = 1;
+        localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
+        console.log('追加しました');
+        return;
+      }else if(window.location.href.match(/3nade/)){
+        ED_nade[3] = 1;
+        localStorage.setItem("clear_nade",JSON.stringify(ED_nade));
+        console.log('追加しました');
+        return;
+      }
   }
 
   if(window.location.href.endsWith('result.html')){//どこかしらリゾルト画面にいたら。
@@ -366,16 +398,16 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
   // --------------おもいで----------
   const comp_nade = document.getElementById('comp_nade');
-  const comp_nade = document.getElementById('comp_nade');
-  const comp_nade = document.getElementById('comp_nade');
-  const comp_nade = document.getElementById('comp_nade');
+  // const comp_nade = document.getElementById('comp_nade');
+  // const comp_nade = document.getElementById('comp_nade');
+  // const comp_nade = document.getElementById('comp_nade');
   
   if(window.location.href.endsWith('memory.html')){//おもいで画面にいたら。
     window.onload = function(){
       console.log("おもいで画面です。");//ok
       console.log(window.localStorage);//ok
-      setData();//エラー
-      console.log(window.localStorage);//出ない
+      setData();//ok
+      console.log(window.localStorage);//ok
     }
     function complete(){//EDコンプ判定で「交代」可能化
       //ストレージに保存したキーで登録されている配列の長さ

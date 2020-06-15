@@ -107,7 +107,7 @@
         tsuna.classList.add('unselected');
         totte.classList.add('unselected');
         start_btn.classList.remove('disabled');
-        // start_btn.onclick = location.href="play.html"
+        start_btn.onclick = location.href="play.html"
         //↑これするとなでなで押したら即画面遷移する…???
         if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
           map.src = "img/map_nade_black.png"
@@ -130,7 +130,7 @@
         if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
           map.src = "img/map_oyatsu_black.png"
         }else{
-          map.src = "img/map_nade.png"
+          map.src = "img/map_oyatsu.png"
         }
       }else{
         return;
@@ -148,7 +148,7 @@
         if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
           map.src = "img/map_tsuna_black.png"
         }else{
-          map.src = "img/map_nade.png"
+          map.src = "img/map_tsuna.png"
         }
       }else{
         return;
@@ -166,7 +166,7 @@
         if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
           map.src = "img/map_totte_black.png"
         }else{
-          map.src = "img/map_nade.png"
+          map.src = "img/map_totte.png"
         }
       }else{
         return;

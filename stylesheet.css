@@ -124,6 +124,32 @@ main{
 .defInu{
   width: 200px;
   margin: 20px 0px;
+  animation: SlideIntoL 0.5s;
+}
+@keyframes SlideIntoL {
+  0% {
+    opacity: 0;
+    transform: translateX(64px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.changed{
+  animation: SlideIntoR 0.5s;
+  
+}
+@keyframes SlideIntoR {
+  0% {
+    opacity: 0;
+    transform: translateX(-64px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 #modal_base{

@@ -11,6 +11,7 @@
   const timer = document.getElementById('timer');
   // -----------------↓スコア❤---------------------
   const scoreHeart = document.getElementById('score❤');
+  var test;
   
   
   // //クリックエフェクト
@@ -96,18 +97,27 @@
       if(start_btn.classList.contains('disabled')){
         return; //押せない時は何も起こらない。
       }else{
-        start_btn.onclick = location.href="play.html"
+        if(test == 0){
+          start_btn.onclick = location.href="play.html"
+        }else if(test == 1){
+          start_btn.onclick = location.href="play_oyatsu.html"
+        }else if(test == 2){
+          start_btn.onclick = location.href="play_tsuna.html"
+        }else if(test == 3){
+          start_btn.onclick = location.href="play_totte.html"
+        }
       }//コース選択によってリンク先変えたい。
     });
 
     nade.addEventListener('click', ()=>{
+      test = 0;
       if(nade.classList.contains('unselected')){
         nade.classList.remove('unselected');
         oyatsu.classList.add('unselected');
         tsuna.classList.add('unselected');
         totte.classList.add('unselected');
         start_btn.classList.remove('disabled');
-        start_btn.onclick = location.href="play.html"
+        // start_btn.onclick = location.href="play.html"
         //↑これするとなでなで押したら即画面遷移する…???
         if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
           map.src = "img/map_nade_black.png"
@@ -119,6 +129,7 @@
       }
     });
     oyatsu.addEventListener('click', ()=>{
+      test = 1;
       if(oyatsu.classList.contains('unselected')){
         oyatsu.classList.remove('unselected');
         nade.classList.add('unselected');
@@ -137,6 +148,7 @@
       }
     });
     tsuna.addEventListener('click', ()=>{
+      test = 2;
       if(tsuna.classList.contains('unselected')){
         tsuna.classList.remove('unselected');
         nade.classList.add('unselected');
@@ -155,6 +167,7 @@
       }
     });
     totte.addEventListener('click', ()=>{
+      test = 3;
       if(totte.classList.contains('unselected')){
         totte.classList.remove('unselected');
         nade.classList.add('unselected');

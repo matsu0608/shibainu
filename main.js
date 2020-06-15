@@ -100,11 +100,11 @@
         if(test == 0){
           start_btn.onclick = location.href="play.html"
         }else if(test == 1){
-          start_btn.onclick = location.href="play_oyatsu.html"
+          start_btn.onclick = location.href="oyatsu_play.html"
         }else if(test == 2){
-          start_btn.onclick = location.href="play_tsuna.html"
+          start_btn.onclick = location.href="tsuna_play.html"
         }else if(test == 3){
-          start_btn.onclick = location.href="play_totte.html"
+          start_btn.onclick = location.href="totte_play.html"
         }
       }//コース選択によってリンク先変えたい。
     });

@@ -57,6 +57,40 @@
 
     const defInu = document.getElementById('defInu');
 
+    //交代ボタン
+    function fullComp(){//tofullComplete{}ストレージの"clear_all"{1,1,1,1}なら「交代」可
+      //ストレージから取得。
+      let cdata_all = localStorage.getItem("clear_all");
+      if ( cdata_all != null ){
+        tofullComplete = JSON.parse(cdata_all);  //Storageのデータを配列に戻す
+        if(tofullComplete.toString() == fullComplete.toString()){
+          inu_change.classList.remove('disabled');
+        }
+      }
+    }
+    fullComp();
+
+    inu_change.addEventListener('click', ()=>{
+      if(inu_change.classList.contains('disabled')){
+        console.log('「おもいで」が不足しています。');
+        return;
+      }
+      nade.classList.add('unselected');
+      oyatsu.classList.add('unselected');
+      tsuna.classList.add('unselected');
+      totte.classList.add('unselected');
+      start_btn.classList.add('disabled');
+      map.src = "img/map_def.png"
+      if(defInu.classList.contains('chenged')){//TOPに黒柴のときに「交代」したら茶柴にもどす。
+        defInu.classList.remove('chenged');
+        defInu.setAttribute('src', 'img/gamestart_dog.png');
+        return;
+      }else{//TOPに茶柴のときに「交代」したら黒柴に変える。
+        defInu.setAttribute('src', 'img/gamestart_dog_black.png');
+        defInu.classList.add('chenged');
+      }
+    });
+
     //ステージ選択
     start_btn.addEventListener('click', ()=>{
       if(start_btn.classList.contains('disabled')){
@@ -75,7 +109,11 @@
         start_btn.classList.remove('disabled');
         // start_btn.onclick = location.href="play.html"
         //↑これするとなでなで押したら即画面遷移する…???
-        map.src = "img/map_nade.png"
+        if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示したい。
+          map.src = "img/map_nade_black.png"
+        }else{
+          map.src = "img/map_nade.png"
+        }
       }else{
         return;
       }
@@ -121,33 +159,6 @@
     });
 
     
-    //交代ボタン
-    function fullComp(){//tofullComplete{}ストレージの"clear_all"{1,1,1,1}なら「交代」可
-      //ストレージから取得したい。
-      let cdata_all = localStorage.getItem("clear_all");
-      if ( cdata_all != null ){
-        tofullComplete = JSON.parse(cdata_all);  //Storageのデータを配列に戻す
-        if(tofullComplete.toString() == fullComplete.toString()){
-          inu_change.classList.remove('disabled');
-        }
-      }
-    }
-    fullComp();
-
-    inu_change.addEventListener('click', ()=>{
-      if(inu_change.classList.contains('disabled')){
-        console.log('「おもいで」が不足しています。');
-        return;
-      }
-      if(defInu.classList.contains('chenged')){
-        defInu.classList.remove('chenged');
-        defInu.setAttribute('src', 'img/gamestart_dog.png');
-        return;
-      }else{
-        defInu.setAttribute('src', 'img/gamestart_dog_black.png');
-        defInu.classList.add('chenged');
-      }
-    });
     
     //ヘルプの表示
     modal_open.addEventListener('click', ()=>{
@@ -166,13 +177,13 @@
       modal_img.src = "img/modal_nade.png"
     });
     slide_btn_oyatyu.addEventListener('click', ()=>{//「おやつあて」
-      modal_img.src = "img/modal_hazimeni.png"
+      modal_img.src = "img/modal_oyatsu.png"
     });
     slide_btn_tsuna.addEventListener('click', ()=>{//「つなひき」
-      modal_img.src = "img/modal_hazimeni.png"
+      modal_img.src = "img/modal_tsuna.png"
     });
     slide_btn_totte.addEventListener('click', ()=>{//「とってこい」
-      modal_img.src = "img/modal_hazimeni.png"
+      modal_img.src = "img/modal_totte.png"
     });
 
 
@@ -526,15 +537,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
     }
 
-    // function fullComp(){//{1,1,1,1}したら「交代」可
-    //   if(tofullComplete.toString() == fullComplete.toString()){
-    //     inu_change.classList.remove('disabled');
-    //   }
-    // }
-
     complete();
-    console.log('コンプ関数した');//ok
-    // fullComp();
 
     //リセットボタン
     const reset_btn = document.getElementById('reset_btn');

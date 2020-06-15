@@ -82,7 +82,7 @@
       totte.classList.add('unselected');
       start_btn.classList.add('disabled');
       map.src = "img/map_def.png"
-      if(defInu.classList.contains('changed')){//TOPに黒柴のときに「交代」したらchangedを外して茶柴にもどす。
+      if(defInu.classList.contains('changed')){//TOPに黒柴のときに「交代」したらchangedを外す。茶柴にもどす。
         defInu.classList.remove('changed');
         defInu.setAttribute('src', 'img/gamestart_dog.png');
         return;
@@ -106,7 +106,7 @@
         }else if(test == 3){
           start_btn.onclick = location.href="totte_play.html"
         }
-      }//コース選択によってリンク先変えたい。
+      }//コース選択によってリンク先変更。
     });
 
     nade.addEventListener('click', ()=>{
@@ -240,19 +240,13 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   let timeoutId;
   let timeLimit = 6*1000 ;
     
-    //タイマーのカウントアップ関数
-    function countUp(){
+    //タイマーのカウントダウン関数
+    function countDown(){
       const d = new Date(startTime + timeLimit - Date.now());
       const s = String(d.getSeconds()).padStart(1,'0');
       
       timer.textContent = `${s}`;
-      timeoutId = setTimeout(()=>{countUp();}, 10);
-    // function countUp(){
-    //   const d = new Date(Date.now() - startTime);
-    //   const s = String(d.getSeconds()).padStart(1,'0');
-      
-    //   timer.textContent = `${s}`;
-    //   timeoutId = setTimeout(()=>{countUp();}, 10);
+      timeoutId = setTimeout(()=>{countDown();}, 10);
   
       //タイマーリセット条件・タイムオーバー処理
       if(isAnswered){//選択肢押したら
@@ -268,7 +262,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     
     window.onload = function(){//画面を読み込んだらタイマースタート 
       startTime = Date.now();
-      countUp();
+      countDown();
     }
     
     
@@ -306,7 +300,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
       isAnswered = false;
       
       startTime = Date.now();//タイマースタート
-      countUp();
+      countDown();
       
       // question.textContent = quiz[currentNum].q;//問題文表示
       question.src = quiz[currentNum].q;//問題画像表示

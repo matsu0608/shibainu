@@ -81,13 +81,13 @@
       totte.classList.add('unselected');
       start_btn.classList.add('disabled');
       map.src = "img/map_def.png"
-      if(defInu.classList.contains('chenged')){//TOPに黒柴のときに「交代」したら茶柴にもどす。
-        defInu.classList.remove('chenged');
+      if(defInu.classList.contains('changed')){//TOPに黒柴のときに「交代」したらchangedを外して茶柴にもどす。
+        defInu.classList.remove('changed');
         defInu.setAttribute('src', 'img/gamestart_dog.png');
         return;
-      }else{//TOPに茶柴のときに「交代」したら黒柴に変える。
+      }else{//TOPに茶柴のときに「交代」したら黒柴に変えてchangedをつける。
         defInu.setAttribute('src', 'img/gamestart_dog_black.png');
-        defInu.classList.add('chenged');
+        defInu.classList.add('changed');
       }
     });
 
@@ -109,7 +109,7 @@
         start_btn.classList.remove('disabled');
         // start_btn.onclick = location.href="play.html"
         //↑これするとなでなで押したら即画面遷移する…???
-        if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示したい。
+        if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
           map.src = "img/map_nade_black.png"
         }else{
           map.src = "img/map_nade.png"
@@ -127,6 +127,11 @@
         start_btn.classList.remove('disabled');
         // start_btn.onclick = location.href="play.html"
         map.src = "img/map_oyatsu.png"
+        if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
+          map.src = "img/map_oyatsu_black.png"
+        }else{
+          map.src = "img/map_nade.png"
+        }
       }else{
         return;
       }
@@ -140,6 +145,11 @@
         start_btn.classList.remove('disabled');
         // start_btn.onclick = location.href="play.html"
         map.src = "img/map_tsuna.png"
+        if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
+          map.src = "img/map_tsuna_black.png"
+        }else{
+          map.src = "img/map_nade.png"
+        }
       }else{
         return;
       }
@@ -153,6 +163,11 @@
         start_btn.classList.remove('disabled');
         // start_btn.onclick = location.href="play.html"
         map.src = "img/map_totte.png"
+        if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
+          map.src = "img/map_totte_black.png"
+        }else{
+          map.src = "img/map_nade.png"
+        }
       }else{
         return;
       }

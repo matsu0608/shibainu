@@ -428,12 +428,12 @@ a{
 /* つなひきゲーム */
 .tsuna_timer{
   position: absolute;
-  bottom: 0;
+  top: 327px;
 }
 .tsuna_btn{
   position: absolute;
   right: 0;
-  bottom: 0;
+  top: 325px;
 }
 .touch_ring{
   margin: 0;
@@ -444,7 +444,11 @@ a{
   width: 100px;
   position: absolute;
   left: 283.5px;
-  bottom: 10px;
+  top:270px;
+  opacity: 0.5;
+}
+div#touch_ring.touch{
+  opacity: 1;
 }
 #gaz{
   width: 100px;

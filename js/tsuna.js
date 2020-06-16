@@ -5,8 +5,6 @@
     const choices = document.getElementById('choices');
     const btn = document.getElementById('btn');
     const fin = document.getElementById('fin');
-    // -----------------↓タイマー---------------------
-    const timer = document.getElementById('timer');
     // -----------------↓スコア❤---------------------
     const scoreHeart = document.getElementById('score❤');
     var test;
@@ -39,9 +37,9 @@
     //   'img/head_dog.png','img/body_dog.png', 'img/kubi_dog.png'
     // );
         
-    //変数宣言
     let score = 0;
     // -----------------↓タイマー---------------------
+    const timer = document.getElementById('timer');
     let startTime;
     let timeoutId;
     let timeLimit = 11*1000 ;
@@ -72,54 +70,39 @@
         startTime = Date.now();
         countDown();
       }
-      
-      
-      //シャッフル関数
-    //   function shuffle(arr){//配列を入れるarr
-        
-    //     for(let i = arr.length - 1; i > 0; i--){//2.1.0
-    //       const j = Math.floor(Math.random()*(i+1));//2.1.0
-    //       [arr[i],arr[j]] = [arr[j],arr[i]];
-    //     }
-        
-    //     return arr;
-    //   }
-      
-    //   function setQuiz(){//クイズ表示関数
-    //     isAnswered = false;
-        
-    //     startTime = Date.now();//タイマースタート
-    //     countDown();
-        
-    //     question.src = quiz[currentNum].q;//問題画像表示
-        
-    //     while(choices.firstChild){//他問題の選択肢表示は全消去
-    //       choices.removeChild(choices.firstChild);
-    //     }
-        
-    //     const shuffledChoices = shuffle([...quiz[currentNum].c]);//問題と選択肢の表示される並びをシャッフルしたもの。
-        
-    //     shuffledChoices.forEach(choice=>{//各選択肢に対して
-          
-    //       const li= document.createElement('li');//liをつくる
-          
-    //     li.textContent = choice;//liの文章に選択肢の文章を代入する。
-    
-    //     li.addEventListener('click', ()=>{//選択肢がクリックされたら...
-    //       checkAnswer(li);
-    //     });
-        
-    //     choices.appendChild(li);//ulの下にliを追加する。
-        
-        
-    //   });
-      
-      
-      
-    //   if(currentNum === quiz.length - 1){//最後の一問の時
-    //     btn.classList.add('disabled');//「つぎ」押せなくする。
-    //   }
-    // }
+    // -----------------↑タイマー---------------------
+
+    let $intervalID;
+    let $intervalID2;
+    let F_player = 0;
+    const touch_ring = document.getElementById('touch_ring');
+    let F_dog = 0;
+    const bar = document.getElementById('bar');
+    const Fp = document.getElementById('Fp');
+    const Fd = document.getElementById('Fd');
+
+
+    //長押しでF_player++させたい。
+    touch_ring.onmousedouwn = function(){//マウスを押したらカウントアップ
+      touch_ring.classList.add('touch');
+      clearInterval($intervalID2);
+      $intervalID = setInterval(function(){
+        F_player ++;
+      }), 20;
+    }
+    touch_ring.onmouseup = function(){//マウスを離したらカウントダウン
+      touch_ring.classList.remove('touch');
+      clearInterval($intervalID);
+      $intervalID2 = setInterval(function(){
+        F_player--;
+      }), 20;
+    }
+
+    Fp.innerHTML = parseInt(F_player.innerHTML);
+
+
+
+
 
     fin.addEventListener('click', ()=>{
       if (score == 0) {//リンク先変更

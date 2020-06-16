@@ -425,6 +425,37 @@ a{
   z-index: -2;
 }
 
+/* つなひきゲーム */
+.tsuna_timer{
+  position: absolute;
+  bottom: 0;
+}
+.tsuna_btn{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.touch_ring{
+  margin: 0;
+  display: inline;
+  left: 500px;
+}
+#touch_ring{
+  width: 100px;
+  position: absolute;
+  left: 283.5px;
+  bottom: 10px;
+}
+#gaz{
+  width: 100px;
+  height: 180px;
+}
+#bar{
+  position: absolute;
+  width: 100px;
+  right: 72px;
+  top: 90px;
+}
 
 /* ------------リゾルト画面 */
 #resultInu{

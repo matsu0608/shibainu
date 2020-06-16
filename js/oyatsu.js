@@ -57,13 +57,8 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
       }     
     }
 
-    // window.onload = function(){//画面を読み込んだらタイマースタート 
-    //   startTime = Date.now();
-    //   countDown();
-    // }
-
     // -----------------↑タイマー---------------------  
-    
+    const timer_next = document.getElementById('timer_next');
     const quiz=['img/L_dog.png','img/R_dog.png','img/L_dog.png','img/R_dog.png'];
     const answer= ['左手','右手',];
     const scoreHeartList = ['img/score0.png','img/score1.png', 'img/score2.png', 'img/score3.png',];
@@ -81,13 +76,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
       }
       return quiz;
     }
-        
-    function beforeQuiz(){
-      console.log('beforeQuizします。');
-      question.src = "img/0dog.pnd";
-      question.classList.add('transration');
-    }
-    
+
     function setQuiz(){//クイズ表示関数
       isAnswered = false;
       
@@ -124,8 +113,20 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
       }
     }
 
-    // beforeQuiz();
-    setQuiz();
+    function doQuiz(){//img変更⇒反転版にimg変更⇒setQuiz()
+      question.src = "img/2dog.png";
+      setTimeout(function(){
+        question.src = "img/3dog.png";
+        setTimeout(function(){
+          question.classList.add('transration');
+          setTimeout(setQuiz,1000);
+        }, 1000);
+      },1000)
+    }
+
+    doQuiz();
+
+    // setQuiz();//出題
     
     function checkAnswer(li){//選択肢をクリックしたら
       

@@ -79,7 +79,8 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
     function setQuiz(){//クイズ表示関数
       isAnswered = false;
-      
+      question.classList.remove('oyatsu_toLR');
+
       startTime = Date.now();//タイマースタート
       countDown();
       
@@ -114,12 +115,13 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     }
 
     function doQuiz(){//img変更⇒反転版にimg変更⇒setQuiz()
-      question.src = "img/2dog.png";
+      question.classList.add('oyatsu_toLR');
+      question.src = "img/oyatsu_toL_dog.png";
       setTimeout(function(){
-        question.src = "img/3dog.png";
+        question.src = "img/oyatsu_toR_dog.png";
         setTimeout(function(){
           question.classList.add('transration');
-          setTimeout(setQuiz,1000);
+          setTimeout(setQuiz,500);
         }, 1000);
       },1000)
     }
@@ -183,7 +185,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
       
     }else{
       currentNum++;
-      setQuiz();//次の問題呼ぶ
+      doQuiz();//次の問題呼ぶ
     }
     
   })

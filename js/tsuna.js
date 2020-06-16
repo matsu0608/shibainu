@@ -77,20 +77,26 @@
     let F_player = 0;
     const touch_ring = document.getElementById('touch_ring');
     let F_dog = 0;
+    const eventStart = isSP ? 'touchstart' : 'mousedown';
+    const eventEnd   = isSP ? 'touchend' : 'mouseup';
     const bar = document.getElementById('bar');
     const Fp = document.getElementById('Fp');
     const Fd = document.getElementById('Fd');
 
 
     //長押しでF_player++させたい。
-    touch_ring.onmousedouwn = function(){//マウスを押したらカウントアップ
+    touch_ring.addEventListener(eventStart, e=>{
       touch_ring.classList.add('touch');
       clearInterval($intervalID2);
       $intervalID = setInterval(function(){
         F_player ++;
       }), 20;
     }
-    touch_ring.onmouseup = function(){//マウスを離したらカウントダウン
+
+    //離したら--
+    touch_ring.addEventListener(eventEnd, e=>{
+      
+    }) = function(){
       touch_ring.classList.remove('touch');
       clearInterval($intervalID);
       $intervalID2 = setInterval(function(){

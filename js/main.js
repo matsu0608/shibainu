@@ -46,6 +46,7 @@
     const oyatsu = document.getElementById('oyatsu');
     const tsuna = document.getElementById('tsuna');
     const totte = document.getElementById('totte');
+    const memory_open = document.getElementById('memory_open');
 
     const modal_img = document.getElementById('modal_img');
     const slide_btns = document.getElementById('slide_btns');
@@ -72,6 +73,9 @@
     fullComp();
 
     inu_change.addEventListener('click', ()=>{
+      if(inu_change.classList.contains('disabled')){
+        return; //押せない時は何も起こらない。
+      }
       if(inu_change.classList.contains('disabled')){
         console.log('「おもいで」が不足しています。');
         return;
@@ -111,6 +115,9 @@
 
     nade.addEventListener('click', ()=>{
       test = 0;
+      if(nade.classList.contains('disabled')){
+        return; //押せない時は何も起こらない。
+      }
       if(nade.classList.contains('unselected')){
         nade.classList.remove('unselected');
         oyatsu.classList.add('unselected');
@@ -130,6 +137,9 @@
     });
     oyatsu.addEventListener('click', ()=>{
       test = 1;
+      if(oyatsu.classList.contains('disabled')){
+        return; //押せない時は何も起こらない。
+      }
       if(oyatsu.classList.contains('unselected')){
         oyatsu.classList.remove('unselected');
         nade.classList.add('unselected');
@@ -149,6 +159,9 @@
     });
     tsuna.addEventListener('click', ()=>{
       test = 2;
+      if(tsuna.classList.contains('disabled')){
+        return; //押せない時は何も起こらない。
+      }
       if(tsuna.classList.contains('unselected')){
         tsuna.classList.remove('unselected');
         nade.classList.add('unselected');
@@ -168,6 +181,9 @@
     });
     totte.addEventListener('click', ()=>{
       test = 3;
+      if(totte.classList.contains('disabled')){
+        return; //押せない時は何も起こらない。
+      }
       if(totte.classList.contains('unselected')){
         totte.classList.remove('unselected');
         nade.classList.add('unselected');
@@ -193,6 +209,14 @@
       modal_content.classList.add('show');
       slide_btns.classList.remove('hidden');
       //見えるように。
+      //他ボタン触れないように
+      nade.classList.add('disabled');
+      oyatsu.classList.add('disabled');
+      tsuna.classList.add('disabled');
+      totte.classList.add('disabled');
+      modal_open.classList.add('disabled');
+      memory_open.classList.add('disabled');
+      inu_change.classList.add('disabled');
     });
     modal_close.addEventListener('click', ()=>{//「とじる」
       modal_content.classList.remove('show');

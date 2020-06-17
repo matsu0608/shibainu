@@ -43,6 +43,11 @@
     let startTime;
     let timeoutId;
     let timeLimit = 11*1000 ;
+
+    window.onload = function(){//画面を読み込んだらタイマースタート 
+      startTime = Date.now();
+      countDown();
+    }
       
       //タイマーのカウントダウン関数
       function countDown(){
@@ -56,20 +61,14 @@
           if(timer.textContent === "0"){//10秒経ったら
           clearTimeout(timeoutId);//タイマー停止。
           fin.classList.remove('hidden');//「柴犬は」が表示される。
+        }else if(F_player === -10 || F_player === 10){//メーターmaxminにぶつかったら
+          clearTimeout(timeoutId);//タイマー停止。
+          timer.textContent = "0";//タイマー表示を0に。
+          fin.classList.remove('hidden');//「柴犬は」が表示される。
         }
-        // if(isAnswered){//選択肢押したら
-        //   clearTimeout(timeoutId);//タイマー停止。
-        //   timer.textContent = "10";//タイマー表示を10に戻す。
-        // }else if(timer.textContent === "0"){//10秒経ったら
-        //   clearTimeout(timeoutId);//タイマー停止。
-        //   fin.classList.remove('hidden');//「柴犬は」が表示される。
-        // }
       }
       
-      window.onload = function(){//画面を読み込んだらタイマースタート 
-        startTime = Date.now();
-        countDown();
-      }
+
     // -----------------↑タイマー---------------------
 
     let $intervalID;
@@ -79,19 +78,34 @@
     // let String_p;
     let F_dog = 0;
     const touch_ring = document.getElementById('touch_ring');
-    const eventStart = isSP ? 'touchstart' : 'mousedown';
-    const eventEnd   = isSP ? 'touchend' : 'mouseup';
     const bar = document.getElementById('bar');
     const Fp = document.getElementById('Fp');
     const Fd = document.getElementById('Fd');
 
 
-    //長押しでF_player++させたい。うごかない
-    touch_ring.addEventListener(eventStart, e=>{
+    //長押しでF_player++ 10までにしたい 色を変えたい
+    touch_ring.addEventListener("touchstart", e=>{
       e.preventDefault();
-      touch_ring.classList.add('touch');//変わらない
-      clearInterval($intervalID2);//とまらない
+      clearInterval($intervalID2);
       $intervalID = setInterval(function(){
+        if(timer.textContent === "0"){//10秒経ったら押せない
+          touch_ring.classList.add('disabled');
+          return;
+        }
+        F_player ++;
+        Fp.textContent = F_player;//NaNが表示されている
+        // String_p = String(F_player);
+        // Fp.textContent = typeof(String_p);
+      }, 500);
+    });
+    touch_ring.addEventListener("mousedown", e=>{
+      e.preventDefault();
+      clearInterval($intervalID2);
+      $intervalID = setInterval(function(){
+        if(timer.textContent === "0"){//10秒経ったら押せない
+          touch_ring.classList.add('disabled');
+          return;
+        }
         F_player ++;
         Fp.textContent = F_player;//NaNが表示されている
         // String_p = String(F_player);
@@ -99,12 +113,32 @@
       }, 500);
     });
 
-    //離したら-- ok
-    touch_ring.addEventListener(eventEnd, e=>{
+    //離したら-- -10まで タイムアップで停止 ok
+    touch_ring.addEventListener("touchend", e=>{
       e.preventDefault();
-      touch_ring.classList.remove('touch');
+      // touch_ring.classList.remove('touch');
       clearInterval($intervalID);
       $intervalID2 = setInterval(function(){
+        if(timer.textContent === "0"){//10秒経ったら減らない
+          touch_ring.classList.add('disabled');
+          return;
+        }
+        if(F_player === -9){
+          clearInterval($intervalID2);
+        }
+        F_player--;
+        Fp.textContent = F_player;
+      }, 500);
+    });
+    touch_ring.addEventListener("mouseup", e=>{
+      e.preventDefault();
+      // touch_ring.classList.remove('touch');
+      clearInterval($intervalID);
+      $intervalID2 = setInterval(function(){
+        if(timer.textContent === "0"){//10秒経ったら減らない
+          touch_ring.classList.add('disabled');
+          return;
+        }
         if(F_player === -9){
           clearInterval($intervalID2);
         }

@@ -445,11 +445,11 @@ a{
   position: absolute;
   left: 283.5px;
   top:270px;
+}
+#touch_ring:active{
   opacity: 0.5;
 }
-div #touch_ring .touch{
-  opacity: 1;
-}
+
 #gaz{
   width: 100px;
   height: 180px;
@@ -461,6 +461,7 @@ div #touch_ring .touch{
   top: 90px;
 }
 
+/* 後で消す */
 #Fp{
   position: absolute;
   left: 0;

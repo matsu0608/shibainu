@@ -74,9 +74,11 @@
 
     let $intervalID;
     let $intervalID2;
+    let isSP;
     let F_player = 0;
-    const touch_ring = document.getElementById('touch_ring');
+    // let String_p;
     let F_dog = 0;
+    const touch_ring = document.getElementById('touch_ring');
     const eventStart = isSP ? 'touchstart' : 'mousedown';
     const eventEnd   = isSP ? 'touchend' : 'mouseup';
     const bar = document.getElementById('bar');
@@ -84,25 +86,32 @@
     const Fd = document.getElementById('Fd');
 
 
-    //長押しでF_player++させたい。
+    //長押しでF_player++させたい。うごかない
     touch_ring.addEventListener(eventStart, e=>{
-      touch_ring.classList.add('touch');
-      clearInterval($intervalID2);
+      e.preventDefault();
+      touch_ring.classList.add('touch');//変わらない
+      clearInterval($intervalID2);//とまらない
       $intervalID = setInterval(function(){
         F_player ++;
-      }), 20;
-    }
+        Fp.textContent = F_player;//NaNが表示されている
+        // String_p = String(F_player);
+        // Fp.textContent = typeof(String_p);
+      }, 500);
+    });
 
-    //離したら--
+    //離したら-- ok
     touch_ring.addEventListener(eventEnd, e=>{
-      
-    }) = function(){
+      e.preventDefault();
       touch_ring.classList.remove('touch');
       clearInterval($intervalID);
       $intervalID2 = setInterval(function(){
+        if(F_player === -9){
+          clearInterval($intervalID2);
+        }
         F_player--;
-      }), 20;
-    }
+        Fp.textContent = F_player;
+      }, 500);
+    });
 
     Fp.innerHTML = parseInt(F_player.innerHTML);
 

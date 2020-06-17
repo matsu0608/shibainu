@@ -447,7 +447,7 @@ a{
   top:270px;
   opacity: 0.5;
 }
-div#touch_ring.touch{
+div #touch_ring .touch{
   opacity: 1;
 }
 #gaz{
@@ -459,6 +459,11 @@ div#touch_ring.touch{
   width: 100px;
   right: 72px;
   top: 90px;
+}
+
+#Fp{
+  position: absolute;
+  left: 0;
 }
 
 /* ------------リゾルト画面 */

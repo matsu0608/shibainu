@@ -466,6 +466,14 @@ a{
   position: absolute;
   left: 0;
 }
+#Fd{
+  position: absolute;
+  left: 30px;
+}
+#Ff{
+  position: absolute;
+  left: 60px;
+}
 
 /* ------------リゾルト画面 */
 #resultInu{

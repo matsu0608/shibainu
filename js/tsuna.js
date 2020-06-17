@@ -83,7 +83,7 @@
     const Fd = document.getElementById('Fd');
 
 
-    //長押しでF_player++ 10までにしたい 色を変えたい
+    //長押しでF_player++ 10まで 色を変えたい
     touch_ring.addEventListener("touchstart", e=>{
       e.preventDefault();
       clearInterval($intervalID2);
@@ -93,12 +93,11 @@
           return;
         }
         F_player ++;
-        Fp.textContent = F_player;//NaNが表示されている
-        // String_p = String(F_player);
-        // Fp.textContent = typeof(String_p);
+        Fp.textContent = F_player;
+
       }, 500);
     });
-    touch_ring.addEventListener("mousedown", e=>{
+    touch_ring.addEventListener("mousedown", e=>{//マウス版
       e.preventDefault();
       clearInterval($intervalID2);
       $intervalID = setInterval(function(){
@@ -107,9 +106,7 @@
           return;
         }
         F_player ++;
-        Fp.textContent = F_player;//NaNが表示されている
-        // String_p = String(F_player);
-        // Fp.textContent = typeof(String_p);
+        Fp.textContent = F_player;
       }, 500);
     });
 
@@ -130,7 +127,7 @@
         Fp.textContent = F_player;
       }, 500);
     });
-    touch_ring.addEventListener("mouseup", e=>{
+    touch_ring.addEventListener("mouseup", e=>{//マウス版
       e.preventDefault();
       // touch_ring.classList.remove('touch');
       clearInterval($intervalID);
@@ -146,8 +143,6 @@
         Fp.textContent = F_player;
       }, 500);
     });
-
-    Fp.innerHTML = parseInt(F_player.innerHTML);
 
 
 

@@ -34,7 +34,7 @@
       //-----------おやつあてゲーム---------
 if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
-  fin.addEventListener('touchstart', ()=>{
+  fin.addEventListener('touchstart', ()=>{//やめる押したらやめる。
     fin.onclick= location.href="index.html";
   });
   // -----------------↓タイマー---------------------

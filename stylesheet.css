@@ -333,10 +333,7 @@ li{
   padding: 10px;
   cursor: grab;
 }
-.disabled_c{
-  background-color: rgb(255, 225, 128);
-  cursor: not-allowed;
-}
+
 .correct{
   margin: 0 auto;
   background-color:red;
@@ -400,6 +397,10 @@ a{
 .disabled{
   background-color: rgb(255, 225, 128);
   cursor: not-allowed;
+  pointer-events: none;
+}
+.disabled_ul{
+  background-color: rgb(255, 225, 128);
   pointer-events: none;
 }
 

@@ -244,7 +244,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
       fin.addEventListener('touchstart',()=>{
       fin.onclick= location.href="index.html";
-    });
+    });//やめる押したらやめる
 
   //配列
   const quiz= shuffle([
@@ -283,8 +283,9 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
         
       }     
     }
-    
-    window.onload = function(){//画面を読み込んだらタイマースタート 
+    let timeoutId_delay;
+
+    window.onload = function(li){//画面を読み込んだらタイマースタート 
       startTime = Date.now();
       countDown();
     }
@@ -340,10 +341,14 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
         const li= document.createElement('li');//liをつくる
         
       li.textContent = choice;//liの文章に選択肢の文章を代入する。
+
+      li.classList.add('disabled_ul');//0.2秒間触れなくする。
+      timeoutId_delay = setTimeout(function(){
+        li.classList.remove('disabled_ul');
+      },200)
   
       li.addEventListener('touchstart', ()=>{//選択肢がクリックされたら...
         checkAnswer(li);
-        // li.classList.add("disabled_c");
       });
       
       choices.appendChild(li);//ulの下にliを追加する。

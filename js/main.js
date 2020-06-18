@@ -98,9 +98,6 @@
 
     //ステージ選択
     start_btn.addEventListener('click', ()=>{
-      if(start_btn.classList.contains('disabled')){
-        return; //押せない時は何も起こらない。
-      }else{
         if(test == 0){
           start_btn.onclick = location.href="play.html"
         }else if(test == 1){
@@ -111,13 +108,10 @@
           start_btn.onclick = location.href="totte_play.html"
         }
       }//コース選択によってリンク先変更。
-    });
+    );
 
     nade.addEventListener('click', ()=>{
       test = 0;
-      if(nade.classList.contains('disabled')){
-        return; //押せない時は何も起こらない。
-      }
       if(nade.classList.contains('unselected')){
         nade.classList.remove('unselected');
         oyatsu.classList.add('unselected');
@@ -137,9 +131,6 @@
     });
     oyatsu.addEventListener('click', ()=>{
       test = 1;
-      if(oyatsu.classList.contains('disabled')){
-        return; //押せない時は何も起こらない。
-      }
       if(oyatsu.classList.contains('unselected')){
         oyatsu.classList.remove('unselected');
         nade.classList.add('unselected');
@@ -159,9 +150,6 @@
     });
     tsuna.addEventListener('click', ()=>{
       test = 2;
-      if(tsuna.classList.contains('disabled')){
-        return; //押せない時は何も起こらない。
-      }
       if(tsuna.classList.contains('unselected')){
         tsuna.classList.remove('unselected');
         nade.classList.add('unselected');
@@ -181,9 +169,6 @@
     });
     totte.addEventListener('click', ()=>{
       test = 3;
-      if(totte.classList.contains('disabled')){
-        return; //押せない時は何も起こらない。
-      }
       if(totte.classList.contains('unselected')){
         totte.classList.remove('unselected');
         nade.classList.add('unselected');
@@ -201,7 +186,6 @@
         return;
       }
     });
-
     
     
     //ヘルプの表示
@@ -248,9 +232,9 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
   //配列
   const quiz= shuffle([
-    {q: 'img/head_dog.png', c: ['❤頭を撫でる','❤お腹を撫でる','❤首を撫でる']},//0問目
-    {q: 'img/body_dog.png', c: ['❤お腹を撫でる','❤頭を撫でる','❤首を撫でる']},
-    {q: 'img/kubi_dog.png', c: ['❤首を撫でる','❤お腹を撫でる','❤頭を撫でる']},
+    {q: 'img/head_dog.png', c: ['頭を撫でる','お腹を撫でる','首を撫でる']},//0問目
+    {q: 'img/body_dog.png', c: ['お腹を撫でる','頭を撫でる','首を撫でる']},
+    {q: 'img/kubi_dog.png', c: ['首を撫でる','お腹を撫でる','頭を撫でる']},
   ]);
   
   const scoreHeartList = ['img/score0.png','img/score1.png', 'img/score2.png', 'img/score3.png',];

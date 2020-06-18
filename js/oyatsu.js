@@ -13,7 +13,7 @@
   var test;
   
   // //クリックエフェクト
-  document.body.addEventListener("click", drop, false);
+  document.body.addEventListener("touchstart", drop, false);
   function drop(e) {
     //座標の取得
     var x = e.pageX;
@@ -63,7 +63,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     }
 
     // -----------------↑タイマー---------------------  
-    const timer_next = document.getElementById('timer_next');
+    // const timer_next = document.getElementById('timer_next');
     const quiz=['img/L_dog.png','img/R_dog.png','img/L_dog.png','img/R_dog.png'];
     const answer= ['左手','右手',];
     const scoreHeartList = ['img/score0.png','img/score1.png', 'img/score2.png', 'img/score3.png',];
@@ -105,12 +105,45 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
         
         li.textContent = choice;//liの文章に選択肢の文章を代入する。
         
-        li.addEventListener('click', ()=>{//選択肢がクリックされたら...
-          checkAnswer(li);
+        li.addEventListener('touchstart', ()=>{//選択肢がクリックされたら...
+          checkAnswer(li);//赤青に着色、「つぎへ」を押せるようにする。
         });
         
         choices.appendChild(li);//ulの下にliを追加する。
+
+        btn.addEventListener('touchstart', ()=>{//「つぎ」ボタンを押したとき
+      
+          if(btn.classList.contains('disabled')){//未回答のときは無。
+          return;
+         }
+         
+         removeClass(li);//黄色にもどし。
+
+         btn.classList.add('disabled');//未回答状態に戻す。「つぎ」押せなくする。
         
+         if(currentNum === quiz.length - 2){//三問終了済
+          toResult.classList.remove('hidden');//「柴犬は」が表示される。
+          
+          
+          if (score == 0) {//リンク先変更
+            toResult.href = '0nade_result.html';
+          }
+          else if (score == 1) {
+            toResult.href = '1nade_result.html';
+          }
+          else if (score == 2) {
+            toResult.href = '2nade_result.html';
+          }
+          else if (score == 3) {
+            toResult.href = '3nade_result.html';
+          }
+          
+         }else{
+          currentNum++;
+          doQuiz();//次の問題呼ぶ
+        }
+        
+      })
         
       });
       
@@ -164,36 +197,46 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
       btn.classList.remove('disabled');//「つぎ」押せるようにする
     }
 
-    btn.addEventListener('click', ()=>{//「つぎ」ボタンを押したとき
-      
-      if(btn.classList.contains('disabled')){//未回答のときは無。
-      return;
+
+    function removeClass(li){
+      if(li.classList.contains('correct')){
+        li.classList.remove('correct');
+      }else if(li.classList.contains('wrong')){
+        li.classList.remove('wrong');
+      }
     }
-    btn.classList.add('disabled');//未回答状態に戻す。「つぎ」押せなくする。
+
+
+  //   btn.addEventListener('touchstart', ()=>{//「つぎ」ボタンを押したとき
+      
+  //     if(btn.classList.contains('disabled')){//未回答のときは無。
+  //     return;
+  //    }
+  //    btn.classList.add('disabled');//未回答状態に戻す。「つぎ」押せなくする。
     
-    if(currentNum === quiz.length - 2){//三問終了済
-      toResult.classList.remove('hidden');//「柴犬は」が表示される。
+  //    if(currentNum === quiz.length - 2){//三問終了済
+  //     toResult.classList.remove('hidden');//「柴犬は」が表示される。
       
       
-      if (score == 0) {//リンク先変更
-        toResult.href = '0nade_result.html';
-      }
-      else if (score == 1) {
-        toResult.href = '1nade_result.html';
-      }
-      else if (score == 2) {
-        toResult.href = '2nade_result.html';
-      }
-      else if (score == 3) {
-        toResult.href = '3nade_result.html';
-      }
+  //     if (score == 0) {//リンク先変更
+  //       toResult.href = '0nade_result.html';
+  //     }
+  //     else if (score == 1) {
+  //       toResult.href = '1nade_result.html';
+  //     }
+  //     else if (score == 2) {
+  //       toResult.href = '2nade_result.html';
+  //     }
+  //     else if (score == 3) {
+  //       toResult.href = '3nade_result.html';
+  //     }
       
-    }else{
-      currentNum++;
-      doQuiz();//次の問題呼ぶ
-    }
+  //    }else{
+  //     currentNum++;
+  //     doQuiz();//次の問題呼ぶ
+  //   }
     
-  })
+  // })
 }
 
   

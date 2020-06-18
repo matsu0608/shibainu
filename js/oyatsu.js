@@ -4,6 +4,7 @@
   const choices = document.getElementById('choices');
   const btn = document.getElementById('btn');
   const fin = document.getElementById('fin');
+  const toResult = document.getElementById('toResult');
   // const scoreLabel = document.querySelector('#result>p');
   // -----------------↓タイマー---------------------
   const timer = document.getElementById('timer');
@@ -32,6 +33,10 @@
 
       //-----------おやつあてゲーム---------
 if(window.location.href.endsWith('play.html')){//あそび画面に居たら
+
+  fin.addEventListener('touchstart', ()=>{
+    fin.onclick= location.href="index.html";
+  });
   // -----------------↓タイマー---------------------
   let startTime;
   let timeoutId;
@@ -167,20 +172,20 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     btn.classList.add('disabled');//未回答状態に戻す。「つぎ」押せなくする。
     
     if(currentNum === quiz.length - 2){//三問終了済
-      fin.classList.remove('hidden');//「柴犬は」が表示される。
+      toResult.classList.remove('hidden');//「柴犬は」が表示される。
       
       
       if (score == 0) {//リンク先変更
-        fin.href = '0nade_result.html';
+        toResult.href = '0nade_result.html';
       }
       else if (score == 1) {
-        fin.href = '1nade_result.html';
+        toResult.href = '1nade_result.html';
       }
       else if (score == 2) {
-        fin.href = '2nade_result.html';
+        toResult.href = '2nade_result.html';
       }
       else if (score == 3) {
-        fin.href = '3nade_result.html';
+        toResult.href = '3nade_result.html';
       }
       
     }else{

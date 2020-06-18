@@ -1,13 +1,12 @@
 'use strict';
-//touchestartに変えている版
+
 {
   //HTMLから取得
   const question = document.getElementById('question');
   const choices = document.getElementById('choices');
   const btn = document.getElementById('btn');
   const fin = document.getElementById('fin');
-  const fin_result = document.getElementById('fin_result');
-  const toResult = document.getElementById('toResult');
+  const scoreLabel = document.querySelector('#result>p');
   // -----------------↓タイマー---------------------
   const timer = document.getElementById('timer');
   // -----------------↓スコア❤---------------------
@@ -16,9 +15,9 @@
   
   
   // //クリックエフェクト
-  document.body.addEventListener("touchstart", drop, false);
-  // document.body.addEventListener("mousedown", drop, false);
   // document.body.addEventListener("touchstart", drop, false);
+  // document.body.addEventListener("mousedown", drop, false);
+  // document.body.addEventListener("click", drop, false);
   function drop(e) {
     //座標の取得
     var x = e.pageX;
@@ -75,7 +74,7 @@
     }
     fullComp();
 
-    inu_change.addEventListener('touchstart', ()=>{
+    inu_change.addEventListener('click', ()=>{
       if(inu_change.classList.contains('disabled')){
         return; //押せない時は何も起こらない。
       }
@@ -100,7 +99,7 @@
     });
 
     //ステージ選択
-    start_btn.addEventListener('touchstart', ()=>{
+    start_btn.addEventListener('click', ()=>{
         if(test == 0){
           start_btn.onclick = location.href="play.html"
         }else if(test == 1){
@@ -113,7 +112,7 @@
       }//コース選択によってリンク先変更。
     );
 
-    nade.addEventListener('touchstart', ()=>{
+    nade.addEventListener('click', ()=>{
       test = 0;
       if(nade.classList.contains('unselected')){
         nade.classList.remove('unselected');
@@ -121,7 +120,7 @@
         tsuna.classList.add('unselected');
         totte.classList.add('unselected');
         start_btn.classList.remove('disabled');
-        // start_btn.ontouchstart = location.href="play.html"
+        // start_btn.onclick = location.href="play.html"
         //↑これするとなでなで押したら即画面遷移する…???
         if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
           map.src = "img/map_nade_black.png"
@@ -132,7 +131,7 @@
         return;
       }
     });
-    oyatsu.addEventListener('touchstart', ()=>{
+    oyatsu.addEventListener('click', ()=>{
       test = 1;
       if(oyatsu.classList.contains('unselected')){
         oyatsu.classList.remove('unselected');
@@ -150,7 +149,7 @@
         return;
       }
     });
-    tsuna.addEventListener('touchstart', ()=>{
+    tsuna.addEventListener('click', ()=>{
       test = 2;
       if(tsuna.classList.contains('unselected')){
         tsuna.classList.remove('unselected');
@@ -158,7 +157,7 @@
         oyatsu.classList.add('unselected');
         totte.classList.add('unselected');
         start_btn.classList.remove('disabled');
-        // start_btn.ontouchstart = location.href="play.html"
+        // start_btn.onclick = location.href="play.html"
         map.src = "img/map_tsuna.png"
         if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
           map.src = "img/map_tsuna_black.png"
@@ -169,7 +168,7 @@
         return;
       }
     });
-    totte.addEventListener('touchstart', ()=>{
+    totte.addEventListener('click', ()=>{
       test = 3;
       if(totte.classList.contains('unselected')){
         totte.classList.remove('unselected');
@@ -187,13 +186,10 @@
         return;
       }
     });
-    memory_open.addEventListener('touchstart', ()=>{
-      memory_open.onclick=location.href='memory.html';
-    });
     
     
     //ヘルプの表示
-    modal_open.addEventListener('touchstart', ()=>{
+    modal_open.addEventListener('click', ()=>{
       modal_content.classList.add('show');
       slide_btns.classList.remove('hidden');
       //見えるように。
@@ -207,7 +203,7 @@
       memory_open.classList.add('disabled');
       inu_change.classList.add('disabled');
     });
-    modal_close.addEventListener('touchstart', ()=>{//「とじる」
+    modal_close.addEventListener('click', ()=>{//「とじる」
       modal_content.classList.remove('show');
       slide_btns.classList.add('hidden');
       nade.classList.remove('disabled');
@@ -218,19 +214,19 @@
       memory_open.classList.remove('disabled');
       inu_change.classList.remove('disabled');
     });
-    slide_btn_top.addEventListener('touchstart', ()=>{//「はじめに」
+    slide_btn_top.addEventListener('click', ()=>{//「はじめに」
       modal_img.src = "img/modal_hazimeni.png"
     });
-    slide_btn_nade.addEventListener('touchstart', ()=>{//「なでなで」
+    slide_btn_nade.addEventListener('click', ()=>{//「なでなで」
       modal_img.src = "img/modal_nade.png"
     });
-    slide_btn_oyatyu.addEventListener('touchstart', ()=>{//「おやつあて」
+    slide_btn_oyatyu.addEventListener('click', ()=>{//「おやつあて」
       modal_img.src = "img/modal_oyatsu.png"
     });
-    slide_btn_tsuna.addEventListener('touchstart', ()=>{//「つなひき」
+    slide_btn_tsuna.addEventListener('click', ()=>{//「つなひき」
       modal_img.src = "img/modal_tsuna.png"
     });
-    slide_btn_totte.addEventListener('touchstart', ()=>{//「とってこい」
+    slide_btn_totte.addEventListener('click', ()=>{//「とってこい」
       modal_img.src = "img/modal_totte.png"
     });
 
@@ -241,10 +237,6 @@
 
 //-----------なでなでゲーム---------
 if(window.location.href.endsWith('play.html')){//あそび画面に居たら
-
-      fin.addEventListener('touchstart',()=>{
-      fin.onclick= location.href="index.html";
-    });
 
   //配列
   const quiz= shuffle([
@@ -341,7 +333,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
         
       li.textContent = choice;//liの文章に選択肢の文章を代入する。
   
-      li.addEventListener('touchstart', ()=>{//選択肢がクリックされたら...
+      li.addEventListener('click', ()=>{//選択肢がクリックされたら...
         checkAnswer(li);
         // li.classList.add("disabled_c");
       });
@@ -361,7 +353,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   
   setQuiz();
   
-  btn.addEventListener('touchstart', ()=>{//「つぎ」ボタンを押したとき
+  btn.addEventListener('click', ()=>{//「つぎ」ボタンを押したとき
     
     if(btn.classList.contains('disabled')){//未回答のときは無。
       return;
@@ -369,20 +361,20 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     btn.classList.add('disabled');//未回答状態に戻す。「つぎ」押せなくする。
     
     if(currentNum === quiz.length - 1){//最後の一問だった時
-      toResult.classList.remove('hidden'); //「柴犬は」が表示される。
-      // toResult.classList.remove('hidden');//「柴犬は」が表示される。
+      fin.classList.remove('hidden');//「柴犬は」が表示される。
+      // scoreLabel.textContent = `うまくいった回数：${score}/${quiz.length}`;//スコアの表示
       
       if (score == 0) {//リンク先変更
-        toResult.href = '0nade_result.html';
+        fin.href = '0nade_result.html';
       }
       else if (score == 1) {
-        toResult.href = '1nade_result.html';
+        fin.href = '1nade_result.html';
       }
       else if (score == 2) {
-        toResult.href = '2nade_result.html';
+        fin.href = '2nade_result.html';
       }
       else if (score == 3) {
-        toResult.href = '3nade_result.html';
+        fin.href = '3nade_result.html';
       }
       
     }else{
@@ -518,9 +510,6 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     }
 
   if(window.location.href.endsWith('result.html')){//どこかしらリゾルト画面にいたら。
-      fin_result.addEventListener('touchstart',()=>{
-      fin_result.onclick= location.href="index.html";
-      });
     window.onload = function(){
       console.log("リゾルト画面です。");//ok
       getED();
@@ -535,7 +524,6 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   const comp_oyatsu = document.getElementById('comp_oyatsu');
   const comp_tsuna = document.getElementById('comp_tsuna');
   const comp_totte = document.getElementById('comp_totte');
-  const memory_fin = document.getElementById('memory_fin');
   
   
   if(window.location.href.endsWith('memory.html')){//おもいで画面にいたら。
@@ -557,10 +545,6 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
       setData();//ok
       // console.log(window.localStorage);//ok
     }
-
-    memory_fin.addEventListener('touchstart',()=>{
-      memory_fin.onclick = location.href='index.html';
-    });
 
 
     function complete(){//各ゲームでフルコンプしたら0⇒1
@@ -599,13 +583,13 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     const yes_reset = document.getElementById('yes_reset');
     const no_reset = document.getElementById('no_reset');
     
-    reset_btn.addEventListener('touchstart', ()=>{
+    reset_btn.addEventListener('click', ()=>{
       modal_reset.classList.remove('hidden');
     });
-    no_reset.addEventListener('touchstart', ()=>{
+    no_reset.addEventListener('click', ()=>{
       modal_reset.classList.add('hidden');
     });
-    yes_reset.addEventListener('touchstart', ()=>{
+    yes_reset.addEventListener('click', ()=>{
         //なでなで
         ED_nade = [0,0,0,0];
         localStorage.setItem("clear_nade",JSON.stringify (ED_nade));

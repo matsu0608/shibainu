@@ -4,7 +4,9 @@
     const question = document.getElementById('question');
     const choices = document.getElementById('choices');
     const btn = document.getElementById('btn');
+    const toResult = document.getElementById('toResult');
     const fin = document.getElementById('fin');
+
     // -----------------↓スコア❤---------------------
     const scoreHeart = document.getElementById('score❤');
     var test;
@@ -32,6 +34,10 @@
 
   if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
+    fin.addEventListener('touchstart',()=>{
+      fin.onclick= location.href="index.html";
+    });
+    
     //配列
     // const quiz= shuffle(
     //   'img/head_dog.png','img/body_dog.png', 'img/kubi_dog.png'
@@ -61,12 +67,12 @@
         //タイマーリセット条件・タイムオーバー処理
           if(timer.textContent === "0"){//10秒経ったら
           clearTimeout(timeoutId);//タイマー停止。
-          fin.classList.remove('hidden');//「柴犬は」が表示される。
+          toResult.classList.remove('hidden');//「柴犬は」が表示される。
         }
         else if(F_dog === -10 || F_player === 10){//Fmaxminで
           clearTimeout(timeoutId);//タイマー停止。
           timer.textContent = "0";//タイマー表示を0に。
-          fin.classList.remove('hidden');//「柴犬は」が表示される。
+          toResult.classList.remove('hidden');//「柴犬は」が表示される。
         }
       }
       
@@ -200,18 +206,18 @@
     // });
 
 
-    fin.addEventListener('click', ()=>{
+    toResult.addEventListener('click', ()=>{
       if (score == 0) {//リンク先変更
-        fin.href = '0nade_result.html';
+        toResult.href = '0nade_result.html';
       }
       else if (score == 1) {
-        fin.href = '1nade_result.html';
+        toResult.href = '1nade_result.html';
       }
       else if (score == 2) {
-        fin.href = '2nade_result.html';
+        toResult.href = '2nade_result.html';
       }
       else if (score == 3) {
-        fin.href = '3nade_result.html';
+        toResult.href = '3nade_result.html';
       }
     })
     

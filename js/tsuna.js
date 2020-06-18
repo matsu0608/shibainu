@@ -152,18 +152,18 @@
         Fp.textContent = F_player;//あとでけす
       }, 500);
     });
-    touch_ring.addEventListener("mousedown", e=>{//マウス版
-      e.preventDefault();
-      clearInterval($intervalID2);
-      $intervalID = setInterval(function(){
-        if(timer.textContent === "0"){//10秒経ったら押せない
-          touch_ring.classList.add('disabled');
-          return;
-        }
-        F_player ++;
-        Fp.textContent = F_player;
-      }, 500);
-    });
+    // touch_ring.addEventListener("mousedown", e=>{//マウス版
+    //   e.preventDefault();
+    //   clearInterval($intervalID2);
+    //   $intervalID = setInterval(function(){
+    //     if(timer.textContent === "0"){//10秒経ったら押せない
+    //       touch_ring.classList.add('disabled');
+    //       return;
+    //     }
+    //     F_player ++;
+    //     Fp.textContent = F_player;
+    //   }, 500);
+    // });
     //離したら-- タイムアップで停止ok
     touch_ring.addEventListener("touchend", e=>{
       e.preventDefault();
@@ -182,32 +182,22 @@
         Fp.textContent = F_player;//あとでけす
       }, 500);
     });
-    touch_ring.addEventListener("mouseup", e=>{//マウス版
-      e.preventDefault();
-      // touch_ring.classList.remove('touch');
-      clearInterval($intervalID);
-      $intervalID2 = setInterval(function(){
-        if(timer.textContent === "0"){//10秒経ったら減らない
-          touch_ring.classList.add('disabled');
-          return;
-        }
-        if(F_player === 1){
-          clearInterval($intervalID2);
-        }
-        F_player--;
-        Fp.textContent = F_player;
-      }, 500);
-    });
-
-    //いつどうやって？？？？
-    // F_player= Fp.textContent;
-    // F_dog= Fd.textContent;
-    // F = F_player+ F_dog;
-    // Ff.textContent = F;
-
-
-
-
+    // touch_ring.addEventListener("mouseup", e=>{//マウス版
+    //   e.preventDefault();
+    //   // touch_ring.classList.remove('touch');
+    //   clearInterval($intervalID);
+    //   $intervalID2 = setInterval(function(){
+    //     if(timer.textContent === "0"){//10秒経ったら減らない
+    //       touch_ring.classList.add('disabled');
+    //       return;
+    //     }
+    //     if(F_player === 1){
+    //       clearInterval($intervalID2);
+    //     }
+    //     F_player--;
+    //     Fp.textContent = F_player;
+    //   }, 500);
+    // });
 
 
     fin.addEventListener('click', ()=>{

@@ -515,6 +515,14 @@ a{
   z-index: 0;
 }
 
+/* ---------------------とってこい */
+#ball{
+  width: 100px;
+  position: absolute;
+  left: 280px;
+  bottom: -60px;
+}
+
 /* ------------リゾルト画面 */
 #resultInu{
   animation: anim-scale 0.5s ease-out;

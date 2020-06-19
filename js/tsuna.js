@@ -38,10 +38,6 @@
       fin.onclick= location.href="index.html";
     });
     
-    //配列
-    // const quiz= shuffle(
-    //   'img/head_dog.png','img/body_dog.png', 'img/kubi_dog.png'
-    // );
         
     let score = 0;
     // -----------------↓タイマー---------------------
@@ -69,7 +65,7 @@
           clearTimeout(timeoutId);//タイマー停止。
           toResult.classList.remove('hidden');//「柴犬は」が表示される。
         }
-        else if(F_dog === -10 || F_player === 10){//Fmaxminで
+        else if(bar_count === 5 || bar_count === -5){//Fmaxminで
           clearTimeout(timeoutId);//タイマー停止。
           timer.textContent = "0";//タイマー表示を0に。
           toResult.classList.remove('hidden');//「柴犬は」が表示される。
@@ -83,28 +79,43 @@
     let $intervalID2;
     let $intervalIDdog;
     let $intervalIDdog2;
-    let $intervalID_F;
     let F_player = 0;//10～0
-    // let String_p;
     let F_dog = 0;//-10～0
 
     const touch_ring = document.getElementById('touch_ring');
     const bar = document.getElementById('bar');
-
-    const Fp = document.getElementById('Fp');
-    const Fd = document.getElementById('Fd');
+    const tsuna_dog = document.getElementById('tsuna_dog');
 
     let y = 90; //バーの初期高さはtop:90px;
+    let bar_count = 0;//バーの高さ。
+
+    // 画像をバーの高さに比例して差し替えたい
+    // function change_size(){
+    //   if(bar_count < -2){
+    //     tsuna_dog.src = "img/tsuna_dog_max.png";
+    //   }else if(bar_count<0){
+    //     tsuna_dog.src ="img/tsuna_dog_+mid.png";
+    //   }else if(bar_count=== 0){
+    //     tsuna_dog.src ="img/tsuna_dog.png";
+    //   }else if(bar_count>0 &&  bar_count<3){
+    //     tsuna_dog.src ="img/tsuna_dog_+mid.png";
+    //   }else{
+    //     tsuna_dog.src ="img/tsuna_dog_min.png";
+    //   }
+    // }
+    // change_size();
+    
     //バーの高さを変える関数
     function bar_1Up(){//バーをあげる＝topをちいさく
-      y -= 9;
+      y -= 18;
       bar.style.top = y + "px";
+      bar_count ++;
     }
     function bar_1Down(){
-      y += 9;
+      y += 18;
       bar.style.top = y + "px";
+      bar_count--;
     }
-
 
     //時間経過でF_dog-- タイムアップで停止 ok
     function F_dog_PULL(){
@@ -120,11 +131,9 @@
           F_dog --;
           console.log(F_dog);
           bar_1Up();
-          Fd.textContent = F_dog;//あとでけす
         }
       }, 500);
     }
-
     //時間経過でF_dog++ タイムアップで停止 ok
     function F_dog_notPULL(){
       clearInterval($intervalIDdog2);
@@ -134,12 +143,12 @@
           return;
         }
         let i = Math.floor(Math.random()*11);//0-10
-        if(i >=3  || F_dog === -1){F_dog_PULL(); // 8割
+        if(i >=3  || F_dog === 0){
+          F_dog_PULL(); // 8割
         }else{
           F_dog ++;
           console.log(F_dog);
           bar_1Down();
-          Fd.textContent = F_dog;//あとでけす
         }
       }, 500);
     }
@@ -147,6 +156,7 @@
     //長押しでF_player++ タイムアップで停止 ok 色を変えたい
     touch_ring.addEventListener("touchstart", e=>{
       e.preventDefault();
+      touch_ring.src = "img/touch_ring.png";
       clearInterval($intervalID2);
       $intervalID = setInterval(function(){
         if(timer.textContent === "0"){//10秒経ったら押せない
@@ -155,25 +165,12 @@
         }
         F_player ++;
         bar_1Down();
-        Fp.textContent = F_player;//あとでけす
       }, 500);
     });
-    // touch_ring.addEventListener("mousedown", e=>{//マウス版
-    //   e.preventDefault();
-    //   clearInterval($intervalID2);
-    //   $intervalID = setInterval(function(){
-    //     if(timer.textContent === "0"){//10秒経ったら押せない
-    //       touch_ring.classList.add('disabled');
-    //       return;
-    //     }
-    //     F_player ++;
-    //     Fp.textContent = F_player;
-    //   }, 500);
-    // });
     //離したら-- タイムアップで停止ok
     touch_ring.addEventListener("touchend", e=>{
       e.preventDefault();
-      // touch_ring.classList.remove('touch');
+      touch_ring.src = "img/notouch_ring.png";
       clearInterval($intervalID);
       $intervalID2 = setInterval(function(){
         if(timer.textContent === "0"){//10秒経ったら減らない
@@ -185,25 +182,8 @@
         }
         F_player--;
         bar_1Up();
-        Fp.textContent = F_player;//あとでけす
       }, 500);
     });
-    // touch_ring.addEventListener("mouseup", e=>{//マウス版
-    //   e.preventDefault();
-    //   // touch_ring.classList.remove('touch');
-    //   clearInterval($intervalID);
-    //   $intervalID2 = setInterval(function(){
-    //     if(timer.textContent === "0"){//10秒経ったら減らない
-    //       touch_ring.classList.add('disabled');
-    //       return;
-    //     }
-    //     if(F_player === 1){
-    //       clearInterval($intervalID2);
-    //     }
-    //     F_player--;
-    //     Fp.textContent = F_player;
-    //   }, 500);
-    // });
 
 
     toResult.addEventListener('click', ()=>{

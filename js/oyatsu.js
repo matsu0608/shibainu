@@ -99,7 +99,8 @@
           choices.removeChild(choices.firstChild);
         }
         
-        answer.forEach(choice=>{//各選択肢に対して
+        // const li_li = [];
+        answer.forEach(choice=>{//選択肢文をいれた配列に対して
           
           const li= document.createElement('li');//独自のliをつくる
           
@@ -110,44 +111,68 @@
           });
           
           choices.appendChild(li);//ulの下にliを追加する。
+
+          // li_li.push(li.textContent);
+          // console.log(li_li);
+
+          //このタイミングで、ulの下に「左手」「右手」ができているはず。配列もつくった。
+  
+          btn.addEventListener('touchstart', ()=>{//「つぎ」ボタンを押したとき
+            if(btn.classList.contains('disabled')){//未回答のときは無。
+              return;
+            }
+            // removeClass(li);
+            //->removeClass(li)は左手のliしか実行されてないからかな。choicesをfor文で回すとかして、子階層のliに対してremoveClassしてあげればいけると思うよ
+
+            // for(let l=0; l<2; l++){//choicesを回す…？
+            //   choices.removeClass();
+            //   console.log(choices[1]);
+            // }
+            // choices.for(let l=0; l<2; l++){//choicesを回す…？
+            //   console.log(choices[1]);
+            //   removeClass(li);
+            // }
+
+            choices.children.forEach(li=>{ //実行できず。forEachだとchoicesは指定できない？
+              removeClass(li);
+            });
+  
+            btn.classList.add('disabled');//未回答状態に戻す。「つぎ」押せなくする。
+  
+            if(currentNum === quiz.length - 2){//三問終了済なら
+             toResult.classList.remove('hidden');//「柴犬は」が表示される。
+             btn.classList.add('disabled');//「つぎ」押せなくする。
+              
+                
+                if (score == 0) {//リンク先変更
+                  toResult.href = '0nade_result.html';
+                }
+                else if (score == 1) {
+                  toResult.href = '1nade_result.html';
+                }
+                else if (score == 2) {
+                  toResult.href = '2nade_result.html';
+                }
+                else if (score == 3) {
+                  toResult.href = '3nade_result.html';
+                }
+                
+                }else{//まだ途中なら
+                  currentNum++;
+                  doQuiz();//次の問題呼ぶ
+                }
+          });
+
         })
 
-        btn.addEventListener('touchstart', ()=>{//「つぎ」ボタンを押したとき
-        
-          if(btn.classList.contains('disabled')){//未回答のときは無。
-            return;
-          }
-          
-          // for(let c = 0; c < 3; c++) {
-          //   removeClass(li);//黄色にもどし。>removeClass(li)は左手のliしか実行されてないからかな。choicesをfor文で回すとかして、子階層のliに対してremoveClassしてあげればいけると思うよ
-          // }
 
-          btn.classList.add('disabled');//未回答状態に戻す。「つぎ」押せなくする。
-
-          if(currentNum === quiz.length - 2){//三問終了済
-           toResult.classList.remove('hidden');//「柴犬は」が表示される。
-           btn.classList.add('disabled');//「つぎ」押せなくする。
-            
-              
-              if (score == 0) {//リンク先変更
-                toResult.href = '0nade_result.html';
-              }
-              else if (score == 1) {
-                toResult.href = '1nade_result.html';
-              }
-              else if (score == 2) {
-                toResult.href = '2nade_result.html';
-              }
-              else if (score == 3) {
-                toResult.href = '3nade_result.html';
-              }
-              
-              }else{
-                currentNum++;
-                doQuiz();//次の問題呼ぶ
-              }
-        });
-
+      }
+      function removeClass(li){
+        if(li.classList.contains('correct')){
+          li.classList.remove('correct');
+        }else if(li.classList.contains('wrong')){
+          li.classList.remove('wrong');
+        }
       }
 
       function doQuiz(){//img変更⇒反転版にimg変更⇒setQuiz()
@@ -196,13 +221,6 @@
       }
 
 
-      function removeClass(li){
-        if(li.classList.contains('correct')){
-          li.classList.remove('correct');
-        }else if(li.classList.contains('wrong')){
-          li.classList.remove('wrong');
-        }
-      }
 
 
     //   btn.addEventListener('touchstart', ()=>{//「つぎ」ボタンを押したとき

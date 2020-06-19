@@ -69,7 +69,7 @@ main{
 
   /* ------------------ここからトップ画面------------- */
   
-  #map{
+  .rolling{
    height: 280px;
    display: block;
    position: absolute;
@@ -82,8 +82,15 @@ main{
     0%{ transform:rotateY(0deg);}
     100%{ transform:rotateY(360deg); }
   }
-
-
+  .map{
+    height: 280px;
+    display: block;
+    position: absolute;
+    right: 30px;
+    top: 0;
+    z-index: 1;
+  }
+  
   .side_list{
    line-height:40px ;
    text-decoration: none;
@@ -394,6 +401,11 @@ a{
   background-color: rgb(255, 196, 0);
 }
 
+#toResult{
+  position: relative;
+  bottom: 5px;
+}
+
 .disabled{
   background-color: rgb(255, 225, 128);
   cursor: not-allowed;
@@ -560,7 +572,7 @@ h4{
 table{
   width: 160px;
   font-size: 12px;
-  margin: 10px auto 0px auto;
+  margin: 10px 3.375px 0px 3.375px;
   border: solid 4px white;
   background-color: rgba(255,255,255,0.5);
   background-blend-mode: lighten;

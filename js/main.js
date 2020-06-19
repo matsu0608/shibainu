@@ -206,6 +206,8 @@
       modal_open.classList.add('disabled');
       memory_open.classList.add('disabled');
       inu_change.classList.add('disabled');
+      //mapの動きをとめる
+      map.classList.remove('rolling');
     });
     modal_close.addEventListener('touchstart', ()=>{//「とじる」
       modal_content.classList.remove('show');
@@ -216,7 +218,8 @@
       totte.classList.remove('disabled');
       modal_open.classList.remove('disabled');
       memory_open.classList.remove('disabled');
-      inu_change.classList.remove('disabled');
+      //mapを動かす
+      map.classList.add('rolling');
     });
     slide_btn_top.addEventListener('touchstart', ()=>{//「はじめに」
       modal_img.src = "img/modal_hazimeni.png"
@@ -558,9 +561,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
     window.onload = function(){
       console.log("おもいで画面です。");//ok
-      // console.log(window.localStorage);//ok
       setData();//ok
-      // console.log(window.localStorage);//ok
     }
 
     memory_fin.addEventListener('touchstart',()=>{
@@ -590,7 +591,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
         tofullComplete[3]  = 1;
       }
       console.log(tofullComplete);//ok
-      //ストレージにtofullCompleteを保存したい。
+      //ストレージにtofullCompleteを保存。
       localStorage.setItem("clear_all",JSON.stringify(tofullComplete));
       console.log(window.localStorage);
 
@@ -605,7 +606,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     const no_reset = document.getElementById('no_reset');
     
     reset_btn.addEventListener('touchstart', ()=>{
-      modal_reset.classList.remove('hidden');
+      modal_reset.classList.remove('hidden');//最終確認ポップを表示さす。
     });
     no_reset.addEventListener('touchstart', ()=>{
       modal_reset.classList.add('hidden');
@@ -625,6 +626,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
         localStorage.setItem("clear_totte",JSON.stringify(ED_totte));
         console.log('リセットしました。');
       modal_reset.classList.add('hidden');
+      window.location.reload();//最後にリロード
     });
 
 

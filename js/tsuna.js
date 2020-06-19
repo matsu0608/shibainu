@@ -187,19 +187,16 @@
 
 
     toResult.addEventListener('click', ()=>{
-      if (score == 0) {//リンク先変更
-        toResult.href = '0nade_result.html';
+      //リンク先変更
+      if (bar_count >= 5) {
+        toResult.href = 'tsuna_result/Inu_tsuna_result.html';//ほこらしげなやつ
       }
-      else if (score == 1) {
-        toResult.href = '1nade_result.html';
+      else if (bar_count <= -5) {
+        toResult.href = 'tsuna_result/Player_tsuna_result.html';//かなしそうなやつ
+      }else{
+        toResult.href = 'tsuna_result/nomal_tsuna_result.html';//ふつうのやつ
       }
-      else if (score == 2) {
-        toResult.href = '2nade_result.html';
-      }
-      else if (score == 3) {
-        toResult.href = '3nade_result.html';
-      }
-    })
+    });
     
   }
 

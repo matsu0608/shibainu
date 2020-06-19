@@ -121,29 +121,6 @@
             if(btn.classList.contains('disabled')){//未回答のときは無。
               return;
             }
-            // removeClass(li);
-            //->removeClass(li)は左手のliしか実行されてないからかな。choicesをfor文で回すとかして、子階層のliに対してremoveClassしてあげればいけると思うよ
-
-            // for(let l=0; l<2; l++){//choicesを回す…？
-            //   choices.removeClass();
-            //   console.log(choices[1]);
-            // }
-            // choices.for(let l=0; l<2; l++){//choicesを回す…？
-            //   console.log(choices[1]);
-            //   removeClass(li);
-            // }
-
-            // choices.children.forEach(ul=>{ //実行できず
-            //   removeClass(ul);
-            // });
-  
-            // choices.children.forEach(ul=>{ //実行できず
-            //   removeClass(li);
-            // });
-  
-            // choices.children.forEach(li=>{ //実行できず
-            //   ul.removeClass(li);
-            // });
 
             removeClass(choices.children[0]);//choices.childrenで、子要素のliを指定している。
             removeClass(choices.children[1]);
@@ -156,16 +133,16 @@
               
                 
                 if (score == 0) {//リンク先変更
-                  toResult.href = '0nade_result.html';
+                  toResult.href = 'oyatsu_result/0oyatsu_result.html';
                 }
                 else if (score == 1) {
-                  toResult.href = '1nade_result.html';
+                  toResult.href = 'oyatsu_result/1oyatsu_result.html';
                 }
                 else if (score == 2) {
-                  toResult.href = '2nade_result.html';
+                  toResult.href = 'oyatsu_result/2oyatsu_result.html';
                 }
                 else if (score == 3) {
-                  toResult.href = '3nade_result.html';
+                  toResult.href = 'oyatsu_result/3oyatsu_result.html';
                 }
                 
                 }else{//まだ途中なら

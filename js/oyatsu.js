@@ -115,7 +115,7 @@
           // li_li.push(li.textContent);
           // console.log(li_li);
 
-          //このタイミングで、ulの下に「左手」「右手」ができているはず。配列もつくった。
+          //このタイミングで、ulの下に「左手」「右手」ができているはず。
   
           btn.addEventListener('touchstart', ()=>{//「つぎ」ボタンを押したとき
             if(btn.classList.contains('disabled')){//未回答のときは無。
@@ -133,17 +133,20 @@
             //   removeClass(li);
             // }
 
-            choices.children.forEach(ul=>{ //実行できず
-              removeClass(ul);
-            });
+            // choices.children.forEach(ul=>{ //実行できず
+            //   removeClass(ul);
+            // });
   
-            choices.children.forEach(ul=>{ //実行できず
-              removeClass(li);
-            });
+            // choices.children.forEach(ul=>{ //実行できず
+            //   removeClass(li);
+            // });
   
-            choices.children.forEach(li=>{ //実行できず
-              ul.removeClass(li);
-            });
+            // choices.children.forEach(li=>{ //実行できず
+            //   ul.removeClass(li);
+            // });
+
+            removeClass(choices.children[0]);//choices.childrenで、子要素のliを指定している。
+            removeClass(choices.children[1]);
   
             btn.classList.add('disabled');//未回答状態に戻す。「つぎ」押せなくする。
   
@@ -170,16 +173,13 @@
                   doQuiz();//次の問題呼ぶ
                 }
           });
-
         })
-
-
       }
-      function removeClass(li){
-        if(li.classList.contains('correct')){
-          li.classList.remove('correct');
-        }else if(li.classList.contains('wrong')){
-          li.classList.remove('wrong');
+      function removeClass(a){
+        if(a.classList.contains('correct')){
+          a.classList.remove('correct');
+        }else if(a.classList.contains('wrong')){
+          a.classList.remove('wrong');
         }
       }
 

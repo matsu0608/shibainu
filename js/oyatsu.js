@@ -32,212 +32,210 @@
       }
 
       //-----------おやつあてゲーム---------
-if(window.location.href.endsWith('play.html')){//あそび画面に居たら
+  if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
-  fin.addEventListener('touchstart', ()=>{//やめる押したらやめる。
-    fin.onclick= location.href="index.html";
-  });
-  // -----------------↓タイマー---------------------
-  let startTime;
-  let timeoutId;
-  let timeLimit = 6*1000 ;
-  
-    //タイマーのカウントダウン関数
-    function countDown(){
-      const d = new Date(startTime + timeLimit - Date.now());
-      const s = String(d.getSeconds()).padStart(1,'0');
-      
-      timer.textContent = `${s}`;
-      timeoutId = setTimeout(()=>{countDown();}, 10);
-      
-      //タイマーリセット条件・タイムオーバー処理
-      if(isAnswered){//選択肢押したら
-        clearTimeout(timeoutId);//タイマー停止。
-        timer.textContent = "5";//タイマー表示を5に戻す。
-      }else if(timer.textContent === "0"){//5秒経ったら
-        clearTimeout(timeoutId);//タイマー停止。
-        isAnswered = true;//選択肢を押せなくなる。
-        btn.classList.remove("disabled");//「つぎ」を押せるようにする。
-        
-      }     
-    }
-
-    // -----------------↑タイマー---------------------  
-    // const timer_next = document.getElementById('timer_next');
-    const quiz=['img/L_dog.png','img/R_dog.png','img/L_dog.png','img/R_dog.png'];
-    const answer= ['左手','右手',];
-    const scoreHeartList = ['img/score0.png','img/score1.png', 'img/score2.png', 'img/score3.png',];
+    fin.addEventListener('touchstart', ()=>{//やめる押したらやめる。
+      fin.onclick= location.href="index.html";
+    });
+    // -----------------↓タイマー---------------------
+    let startTime;
+    let timeoutId;
+    let timeLimit = 6*1000 ;
     
-    let currentNum = 0; //今何問目？
-    let isAnswered;
-    let score = 0;
-    let shuffled_quiz;//問題がでるたびに再代入していく。
-    
-    //犬画像シャッフル関数
-    const shuffle = ([...quiz])=>{
-      for(let i = quiz.length - 1; i > 0; i--){//1.0
-        const j = Math.floor(Math.random()*(i+1));//1.0
-        [quiz[i],quiz[j]] = [quiz[j],quiz[i]];
+      //タイマーのカウントダウン関数
+      function countDown(){
+        const d = new Date(startTime + timeLimit - Date.now());
+        const s = String(d.getSeconds()).padStart(1,'0');
+        
+        timer.textContent = `${s}`;
+        timeoutId = setTimeout(()=>{countDown();}, 10);
+        
+        //タイマーリセット条件・タイムオーバー処理
+        if(isAnswered){//選択肢押したら
+          clearTimeout(timeoutId);//タイマー停止。
+          timer.textContent = "5";//タイマー表示を5に戻す。
+        }else if(timer.textContent === "0"){//5秒経ったら
+          clearTimeout(timeoutId);//タイマー停止。
+          isAnswered = true;//選択肢を押せなくなる。
+          btn.classList.remove("disabled");//「つぎ」を押せるようにする。
+          
+        }     
       }
-      return quiz;
-    }
 
-    function setQuiz(){//クイズ表示関数
-      isAnswered = false;
-      question.classList.remove('oyatsu_toLR');
-
-      startTime = Date.now();//タイマースタート
-      countDown();
+      // -----------------↑タイマー---------------------  
+      // const timer_next = document.getElementById('timer_next');
+      const quiz=['img/L_dog.png','img/R_dog.png','img/L_dog.png','img/R_dog.png'];
+      const answer= ['左手','右手',];
+      const scoreHeartList = ['img/score0.png','img/score1.png', 'img/score2.png', 'img/score3.png',];
       
-      shuffled_quiz = (shuffle(quiz)[currentNum]);//再代入
+      let currentNum = 0; //今何問目？
+      let isAnswered;
+      let score = 0;
+      let shuffled_quiz;//問題がでるたびに再代入していく。
       
-      console.log(shuffled_quiz);
-      
-      question.src = shuffled_quiz;//問題画像表示
-      
-      while(choices.firstChild){//他問題の選択肢表示は全消去
-        choices.removeChild(choices.firstChild);
+      //犬画像シャッフル関数
+      const shuffle = ([...quiz])=>{
+        for(let i = quiz.length - 1; i > 0; i--){//1.0
+          const j = Math.floor(Math.random()*(i+1));//1.0
+          [quiz[i],quiz[j]] = [quiz[j],quiz[i]];
+        }
+        return quiz;
       }
-      
-      answer.forEach(choice=>{//各選択肢に対して
+
+      function setQuiz(){//クイズ表示関数
+        isAnswered = false;
+        question.classList.remove('oyatsu_toLR');
+
+        startTime = Date.now();//タイマースタート
+        countDown();
         
-        const li= document.createElement('li');//liをつくる
+        shuffled_quiz = (shuffle(quiz)[currentNum]);//再代入
         
-        li.textContent = choice;//liの文章に選択肢の文章を代入する。
+        console.log(shuffled_quiz);
         
-        li.addEventListener('touchstart', ()=>{//選択肢がクリックされたら...
-          checkAnswer(li);//赤青に着色、「つぎへ」を押せるようにする。
-        });
+        question.src = shuffled_quiz;//問題画像表示
         
-        choices.appendChild(li);//ulの下にliを追加する。
+        while(choices.firstChild){//他問題の選択肢表示は全消去
+          choices.removeChild(choices.firstChild);
+        }
+        
+        answer.forEach(choice=>{//各選択肢に対して
+          
+          const li= document.createElement('li');//独自のliをつくる
+          
+          li.textContent = choice;//liの文章に選択肢配列の文章を代入する。
+          
+          li.addEventListener('touchstart', ()=>{//liがクリックされたら...
+            checkAnswer(li);//赤青に着色、「つぎへ」を押せるようにする。
+          });
+          
+          choices.appendChild(li);//ulの下にliを追加する。
+        })
 
         btn.addEventListener('touchstart', ()=>{//「つぎ」ボタンを押したとき
-      
+        
           if(btn.classList.contains('disabled')){//未回答のときは無。
-          return;
-         }
-         
-         removeClass(li);//黄色にもどし。
+            return;
+          }
+          
+          // for(let c = 0; c < 3; c++) {
+          //   removeClass(li);//黄色にもどし。>removeClass(li)は左手のliしか実行されてないからかな。choicesをfor文で回すとかして、子階層のliに対してremoveClassしてあげればいけると思うよ
+          // }
 
-         btn.classList.add('disabled');//未回答状態に戻す。「つぎ」押せなくする。
-        
-         if(currentNum === quiz.length - 2){//三問終了済
-          toResult.classList.remove('hidden');//「柴犬は」が表示される。
-          
-          
-          if (score == 0) {//リンク先変更
-            toResult.href = '0nade_result.html';
-          }
-          else if (score == 1) {
-            toResult.href = '1nade_result.html';
-          }
-          else if (score == 2) {
-            toResult.href = '2nade_result.html';
-          }
-          else if (score == 3) {
-            toResult.href = '3nade_result.html';
-          }
-          
-         }else{
-          currentNum++;
-          doQuiz();//次の問題呼ぶ
-        }
-        
-      })
-        
-      });
-      
-      if(currentNum === quiz.length - 2){//三問終了済
-        btn.classList.add('disabled');//「つぎ」押せなくする。
+          btn.classList.add('disabled');//未回答状態に戻す。「つぎ」押せなくする。
+
+          if(currentNum === quiz.length - 2){//三問終了済
+           toResult.classList.remove('hidden');//「柴犬は」が表示される。
+           btn.classList.add('disabled');//「つぎ」押せなくする。
+            
+              
+              if (score == 0) {//リンク先変更
+                toResult.href = '0nade_result.html';
+              }
+              else if (score == 1) {
+                toResult.href = '1nade_result.html';
+              }
+              else if (score == 2) {
+                toResult.href = '2nade_result.html';
+              }
+              else if (score == 3) {
+                toResult.href = '3nade_result.html';
+              }
+              
+              }else{
+                currentNum++;
+                doQuiz();//次の問題呼ぶ
+              }
+        });
+
       }
-    }
 
-    function doQuiz(){//img変更⇒反転版にimg変更⇒setQuiz()
-      question.classList.add('oyatsu_toLR');
-      question.src = "img/oyatsu_toL_dog.png";
-      setTimeout(function(){
-        question.src = "img/oyatsu_toR_dog.png";
+      function doQuiz(){//img変更⇒反転版にimg変更⇒setQuiz()
+        question.classList.add('oyatsu_toLR');
+        question.src = "img/oyatsu_toL_dog.png";
         setTimeout(function(){
-          question.classList.add('transration');
-          setTimeout(setQuiz,500);
-        }, 1000);
-      },1000)
-    }
-
-    doQuiz();
-
-    // setQuiz();//出題
-    
-    function checkAnswer(li){//選択肢をクリックしたら
-      
-      if(isAnswered){
-        return;//回答済みなら何も起きない。
+          question.src = "img/oyatsu_toR_dog.png";
+          setTimeout(function(){
+            question.classList.add('transration');
+            setTimeout(setQuiz,500);
+          }, 1000);
+        },1000)
       }
-      isAnswered = true;//回答済みとする
 
+      doQuiz();
+
+      // setQuiz();//出題
       
-      if(shuffled_quiz === 'img/L_dog.png'){
-        if(li.textContent === answer[0]){//左犬でc[0]選んだら
-          li.classList.add('correct');
-          score++;
-          scoreHeart.src = scoreHeartList[score];
-        }else{
-          li.classList.add('wrong');
+      function checkAnswer(li){//選択肢をクリックしたら
+        
+        if(isAnswered){
+          return;//回答済みなら何も起きない。
         }
-      }else if(shuffled_quiz === 'img/R_dog.png'){
-        if(li.textContent === answer[1]){//右犬でc[1]選んだら
-          li.classList.add('correct');
-          score++;
-          scoreHeart.src = scoreHeartList[score];
-        }else{
-          li.classList.add('wrong');
-        }      
+        isAnswered = true;//回答済みとする
+
+        
+        if(shuffled_quiz === 'img/L_dog.png'){
+          if(li.textContent === answer[0]){//左犬でc[0]選んだら
+            li.classList.add('correct');
+            score++;
+            scoreHeart.src = scoreHeartList[score];
+          }else{
+            li.classList.add('wrong');
+          }
+        }else if(shuffled_quiz === 'img/R_dog.png'){
+          if(li.textContent === answer[1]){//右犬でc[1]選んだら
+            li.classList.add('correct');
+            score++;
+            scoreHeart.src = scoreHeartList[score];
+          }else{
+            li.classList.add('wrong');
+          }      
+        }
+
+        btn.classList.remove('disabled');//「つぎ」押せるようにする
       }
 
-      btn.classList.remove('disabled');//「つぎ」押せるようにする
-    }
 
-
-    function removeClass(li){
-      if(li.classList.contains('correct')){
-        li.classList.remove('correct');
-      }else if(li.classList.contains('wrong')){
-        li.classList.remove('wrong');
+      function removeClass(li){
+        if(li.classList.contains('correct')){
+          li.classList.remove('correct');
+        }else if(li.classList.contains('wrong')){
+          li.classList.remove('wrong');
+        }
       }
-    }
 
 
-  //   btn.addEventListener('touchstart', ()=>{//「つぎ」ボタンを押したとき
+    //   btn.addEventListener('touchstart', ()=>{//「つぎ」ボタンを押したとき
+        
+    //     if(btn.classList.contains('disabled')){//未回答のときは無。
+    //     return;
+    //    }
+    //    btn.classList.add('disabled');//未回答状態に戻す。「つぎ」押せなくする。
       
-  //     if(btn.classList.contains('disabled')){//未回答のときは無。
-  //     return;
-  //    }
-  //    btn.classList.add('disabled');//未回答状態に戻す。「つぎ」押せなくする。
-    
-  //    if(currentNum === quiz.length - 2){//三問終了済
-  //     toResult.classList.remove('hidden');//「柴犬は」が表示される。
+    //    if(currentNum === quiz.length - 2){//三問終了済
+    //     toResult.classList.remove('hidden');//「柴犬は」が表示される。
+        
+        
+    //     if (score == 0) {//リンク先変更
+    //       toResult.href = '0nade_result.html';
+    //     }
+    //     else if (score == 1) {
+    //       toResult.href = '1nade_result.html';
+    //     }
+    //     else if (score == 2) {
+    //       toResult.href = '2nade_result.html';
+    //     }
+    //     else if (score == 3) {
+    //       toResult.href = '3nade_result.html';
+    //     }
+        
+    //    }else{
+    //     currentNum++;
+    //     doQuiz();//次の問題呼ぶ
+    //   }
       
-      
-  //     if (score == 0) {//リンク先変更
-  //       toResult.href = '0nade_result.html';
-  //     }
-  //     else if (score == 1) {
-  //       toResult.href = '1nade_result.html';
-  //     }
-  //     else if (score == 2) {
-  //       toResult.href = '2nade_result.html';
-  //     }
-  //     else if (score == 3) {
-  //       toResult.href = '3nade_result.html';
-  //     }
-      
-  //    }else{
-  //     currentNum++;
-  //     doQuiz();//次の問題呼ぶ
-  //   }
-    
-  // })
-}
+    // })
+  }
 
   
 }

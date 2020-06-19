@@ -374,8 +374,9 @@ li{
   text-align: center;
   cursor:default;
   display: inline-block;
-  position: relative;
-  bottom: 5px;
+  position: absolute;
+  z-index: 2;
+  top: 320px;
 }
 /* 「つぎ」 */
 .next{
@@ -383,6 +384,9 @@ li{
   display: inline-block;
   position: relative;
   bottom: 5px;
+  position: absolute;
+  margin-left: 230px;
+  z-index: 1;
 }
 /* 「柴犬は…」 */
 a{
@@ -398,6 +402,7 @@ a{
   color: white;
   display: inline-block;
   margin: 0px auto;
+  margin-left: 440px;
   background-color: rgb(255, 196, 0);
 }
 
@@ -449,6 +454,19 @@ a{
 }
 
 /* つなひきゲーム */
+.fin_tsuna{
+  border: none;
+  width: 110px;
+  height: 32px;
+  font-size: 14px;
+  background-color: rgb(202, 174, 83);
+  display: inline-block;
+  vertical-align: top;
+  position: absolute;
+  left: 80px;
+  top: 10px;
+}
+
 .tsuna_timer{
   position: absolute;
   top: 12px;
@@ -456,7 +474,8 @@ a{
 .tsuna_btn{
   position: absolute;
   right: 0;
-  top: 325px;
+  top: 240px;
+  z-index: 3;
 }
 .touch_ring{
   margin: 0;
@@ -464,18 +483,21 @@ a{
   left: 500px;
 }
 #touch_ring{
+  background: none;
+  border: none;
   width: 100px;
   position: absolute;
-  left: 283.5px;
+  left: 273px;
   top:270px;
-}
-#touch_ring:active{
-  opacity: 0.5;
+  z-index: 2;
 }
 
 #gaz{
+  position: absolute;
   width: 100px;
   height: 180px;
+  right: 72px;
+  top: 0;
 }
 #bar{
   position: absolute;
@@ -484,18 +506,13 @@ a{
   top: 90px;
 }
 
-/* 後で消す */
-#Fp{
+#tsuna_dog{
+  right: 250px;
+  width: 150px;
   position: absolute;
-  left: 0;
-}
-#Fd{
-  position: absolute;
-  left: 30px;
-}
-#Ff{
-  position: absolute;
-  left: 60px;
+  /* bottom: 5px; */
+  top: 10px;
+  z-index: 0;
 }
 
 /* ------------リゾルト画面 */

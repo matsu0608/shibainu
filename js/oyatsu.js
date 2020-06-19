@@ -133,8 +133,16 @@
             //   removeClass(li);
             // }
 
-            choices.children.forEach(li=>{ //実行できず。forEachだとchoicesは指定できない？
+            choices.children.forEach(ul=>{ //実行できず
+              removeClass(ul);
+            });
+  
+            choices.children.forEach(ul=>{ //実行できず
               removeClass(li);
+            });
+  
+            choices.children.forEach(li=>{ //実行できず
+              ul.removeClass(li);
             });
   
             btn.classList.add('disabled');//未回答状態に戻す。「つぎ」押せなくする。

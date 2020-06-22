@@ -6,6 +6,7 @@
     const btn = document.getElementById('btn');
     const toResult = document.getElementById('toResult');
     const fin = document.getElementById('fin');
+    const fin_result = document.getElementById('fin_result');
 
     // -----------------↓スコア❤---------------------
     const scoreHeart = document.getElementById('score❤');
@@ -88,22 +89,6 @@
 
     let y = 90; //バーの初期高さはtop:90px;
     let bar_count = 0;//バーの高さ。
-
-    // 画像をバーの高さに比例して差し替えたい
-    // function change_size(){
-    //   if(bar_count < -2){
-    //     tsuna_dog.src = "img/tsuna_dog_max.png";
-    //   }else if(bar_count<0){
-    //     tsuna_dog.src ="img/tsuna_dog_+mid.png";
-    //   }else if(bar_count=== 0){
-    //     tsuna_dog.src ="img/tsuna_dog.png";
-    //   }else if(bar_count>0 &&  bar_count<3){
-    //     tsuna_dog.src ="img/tsuna_dog_+mid.png";
-    //   }else{
-    //     tsuna_dog.src ="img/tsuna_dog_min.png";
-    //   }
-    // }
-    // change_size();
     
     //バーの高さを変える関数
     function bar_1Up(){//バーをあげる＝topをちいさく
@@ -200,4 +185,39 @@
     
   }
 
+
+  function getED(){//EDをみたら配列の中身0を1にする。
+
+    //urlで
+      if(window.location.href.match(/Inu_tsuna/)){//{1,x,x,x}
+        // localStorage.getItem("clear_tsuna");
+        ED_tsuna[0] = 1;
+        // console.log(ED_tsuna);
+        localStorage.setItem("clear_tsuna",JSON.stringify(ED_tsuna));
+        return;
+      }else if(window.location.href.match(/nomal_tsuna/)){//{x,1,x,x}
+        ED_tsuna[1] = 1;
+        localStorage.setItem("clear_tsuna",JSON.stringify(ED_tsuna));
+        return;
+      }else if(window.location.href.match(/Player_tsuna/)){//{x,x,1,x}
+        ED_tsuna[2] = 1;
+        localStorage.setItem("clear_tsuna",JSON.stringify(ED_tsuna));
+        return;
+      // }else if(window.location.href.match(/3tsuna/)){//{x,x,x,1}
+      //   ED_tsuna[3] = 1;
+      //   localStorage.setItem("clear_tsuna",JSON.stringify(ED_tsuna));
+      //   return;
+      }
+    }
+
+  if(window.location.href.endsWith('result.html')){//どこかしらリゾルト画面にいたら。
+      fin_result.addEventListener('touchstart',()=>{
+      fin_result.onclick= location.href="/index.html";
+      });
+    window.onload = function(){
+      console.log("リゾルト画面です。");//ok
+      getED();
+      console.log(window.localStorage);//ok
+    }
+  }
 }

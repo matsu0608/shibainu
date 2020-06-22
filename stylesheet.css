@@ -211,7 +211,7 @@ main{
 #slide_btns{
   color: white;
   font-size: 16px;
-  padding-left: 20px;
+  padding-left: 80px;
   background-color: white;
   padding-bottom: 13px;
   border: 4px dotted #aaa;
@@ -559,7 +559,7 @@ a{
 }
 h4{
   display: inline; 
-  margin:0 45px;
+  margin:0 70px;
 }
 /* 
 .memory_nade:after{
@@ -595,9 +595,9 @@ h4{
   display: flex;
 }
 table{
-  width: 160px;
+  width: 200px;
   font-size: 12px;
-  margin: 10px 3.375px 0px 3.375px;
+  margin: 10px auto 0px;
   border: solid 4px white;
   background-color: rgba(255,255,255,0.5);
   background-blend-mode: lighten;
@@ -633,7 +633,7 @@ h6{
 h5{
   width: 100px;
   display: inline-block; 
-  margin:0 30px;
+  margin:0 55px;
   background-color: rgb(255, 196, 0);
   border-radius: 5px;
   font-size:5px ;

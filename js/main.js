@@ -38,8 +38,11 @@
       // -----------------↓トップ画面---------------------
       const start_btn = document.getElementById('start');
       const inu_change = document.getElementById('inu_change');
-      let tofullComplete = [0,0,0,0];//EDコンプカウント初期形
-      let fullComplete = [1,1,1,1];//完成形。比較用。
+      // let tofullComplete = [0,0,0,0];//EDコンプカウント初期形
+      let tofullComplete = [0,0,0];//EDコンプカウント初期形
+      // let fullComplete = [1,1,1,1];//完成形。比較用。
+      let minifullComplete = [1,1,1,1];//ミニゲームの完成形。比較用。
+      let fullComplete = [1,1,1];//全体の完成形。比較用。
 
   if(window.location.href.endsWith('index.html')){//トップ画面に居たら
     const modal_open = document.getElementById('modal_open');
@@ -48,7 +51,7 @@
     const nade = document.getElementById('nade');
     const oyatsu = document.getElementById('oyatsu');
     const tsuna = document.getElementById('tsuna');
-    const totte = document.getElementById('totte');
+    // const totte = document.getElementById('totte');
     const memory_open = document.getElementById('memory_open');
 
     const modal_img = document.getElementById('modal_img');
@@ -57,13 +60,13 @@
     const slide_btn_nade = document.getElementById('slide_btn_nade');
     const slide_btn_oyatyu = document.getElementById('slide_btn_oyatyu');
     const slide_btn_tsuna = document.getElementById('slide_btn_tsuna');
-    const slide_btn_totte = document.getElementById('slide_btn_totte');
+    // const slide_btn_totte = document.getElementById('slide_btn_totte');
     const map = document.getElementById('map');
 
     const defInu = document.getElementById('defInu');
 
     //交代ボタン
-    function fullComp(){//tofullComplete{}ストレージの"clear_all"{1,1,1,1}なら「交代」可
+    function fullComp(){//tofullComplete{}ストレージの"clear_all"{1,1,1}なら「交代」可
       //ストレージから取得。
       let cdata_all = localStorage.getItem("clear_all");
       if ( cdata_all != null ){
@@ -86,7 +89,7 @@
       nade.classList.add('unselected');
       oyatsu.classList.add('unselected');
       tsuna.classList.add('unselected');
-      totte.classList.add('unselected');
+      // totte.classList.add('unselected');
       start_btn.classList.add('disabled');
       map.src = "img/map_def.png"
       if(defInu.classList.contains('changed')){//TOPに黒柴のときに「交代」したらchangedを外す。茶柴にもどす。
@@ -108,7 +111,7 @@
         }else if(test == 2){
           start_btn.onclick = location.href="tsuna_play.html"
         }else if(test == 3){
-          start_btn.onclick = location.href="totte_play.html"
+          // start_btn.onclick = location.href="totte_play.html"
         }
       }//コース選択によってリンク先変更。
     );
@@ -119,10 +122,8 @@
         nade.classList.remove('unselected');
         oyatsu.classList.add('unselected');
         tsuna.classList.add('unselected');
-        totte.classList.add('unselected');
+        // totte.classList.add('unselected');
         start_btn.classList.remove('disabled');
-        // start_btn.ontouchstart = location.href="play.html"
-        //↑これするとなでなで押したら即画面遷移する…???
         if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
           map.src = "img/map_nade_black.png"
         }else{
@@ -138,7 +139,7 @@
         oyatsu.classList.remove('unselected');
         nade.classList.add('unselected');
         tsuna.classList.add('unselected');
-        totte.classList.add('unselected');
+        // totte.classList.add('unselected');
         start_btn.classList.remove('disabled');
         map.src = "img/map_oyatsu.png"
         if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
@@ -156,7 +157,7 @@
         tsuna.classList.remove('unselected');
         nade.classList.add('unselected');
         oyatsu.classList.add('unselected');
-        totte.classList.add('unselected');
+        // totte.classList.add('unselected');
         start_btn.classList.remove('disabled');
         // start_btn.ontouchstart = location.href="play.html"
         map.src = "img/map_tsuna.png"
@@ -169,24 +170,24 @@
         return;
       }
     });
-    totte.addEventListener('touchstart', ()=>{
-      test = 3;
-      if(totte.classList.contains('unselected')){
-        totte.classList.remove('unselected');
-        nade.classList.add('unselected');
-        oyatsu.classList.add('unselected');
-        tsuna.classList.add('unselected');
-        start_btn.classList.remove('disabled');
-        map.src = "img/map_totte.png"
-        if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
-          map.src = "img/map_totte_black.png"
-        }else{
-          map.src = "img/map_totte.png"
-        }
-      }else{
-        return;
-      }
-    });
+    // totte.addEventListener('touchstart', ()=>{
+    //   test = 3;
+    //   if(totte.classList.contains('unselected')){
+    //     totte.classList.remove('unselected');
+    //     nade.classList.add('unselected');
+    //     oyatsu.classList.add('unselected');
+    //     tsuna.classList.add('unselected');
+    //     start_btn.classList.remove('disabled');
+    //     map.src = "img/map_totte.png"
+    //     if(defInu.classList.contains('changed')){//黒柴状態でリストをクリックすると、マップも黒柴版を表示する。
+    //       map.src = "img/map_totte_black.png"
+    //     }else{
+    //       map.src = "img/map_totte.png"
+    //     }
+    //   }else{
+    //     return;
+    //   }
+    // });
     memory_open.addEventListener('touchstart', ()=>{
       memory_open.onclick=location.href='memory.html';
     });
@@ -202,7 +203,7 @@
       nade.classList.add('disabled');
       oyatsu.classList.add('disabled');
       tsuna.classList.add('disabled');
-      totte.classList.add('disabled');
+      // totte.classList.add('disabled');
       modal_open.classList.add('disabled');
       memory_open.classList.add('disabled');
       inu_change.classList.add('disabled');
@@ -215,7 +216,7 @@
       nade.classList.remove('disabled');
       oyatsu.classList.remove('disabled');
       tsuna.classList.remove('disabled');
-      totte.classList.remove('disabled');
+      // totte.classList.remove('disabled');
       modal_open.classList.remove('disabled');
       memory_open.classList.remove('disabled');
       //mapを動かす
@@ -233,9 +234,9 @@
     slide_btn_tsuna.addEventListener('touchstart', ()=>{//「つなひき」
       modal_img.src = "img/modal_tsuna.png"
     });
-    slide_btn_totte.addEventListener('touchstart', ()=>{//「とってこい」
-      modal_img.src = "img/modal_totte.png"
-    });
+    // slide_btn_totte.addEventListener('touchstart', ()=>{//「とってこい」
+    //   modal_img.src = "img/modal_totte.png"
+    // });
 
 
 
@@ -422,17 +423,17 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   let ED_tsuna;
   let tsu = localStorage.getItem("clear_tsuna");
   if (!tsu) {
-    ED_tsuna = new Array(0,0,0,0);
+    ED_tsuna = new Array(0,0,0);
   } else {
     ED_tsuna = JSON.parse(tsu);
   }
-  let ED_totte;
-  let to = localStorage.getItem("clear_totte");
-  if (!to) {
-    ED_totte = new Array(0,0,0,0);
-  } else {
-    ED_totte = JSON.parse(to);
-  }
+  // let ED_totte;
+  // let to = localStorage.getItem("clear_totte");
+  // if (!to) {
+  //   ED_totte = new Array(0,0,0,0);
+  // } else {
+  //   ED_totte = JSON.parse(to);
+  // }
 
   //↓「おもいで」なでなでゲームの<img>についているid
   const get0_nade = document.getElementById('get0_nade');
@@ -453,17 +454,17 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   const get3_tsuna = document.getElementById('get3_tsuna');
   let get_tsuna = [get0_tsuna, get1_tsuna, get2_tsuna, get3_tsuna];//<img>の配列
   //↓「おもいで」とってこいゲームの<img>についているid
-  const get0_totte = document.getElementById('get0_totte');
-  const get1_totte = document.getElementById('get1_totte');
-  const get2_totte = document.getElementById('get2_totte');
-  const get3_totte = document.getElementById('get3_totte');
-  let get_totte = [get0_totte, get1_totte, get2_totte, get3_totte];//<img>の配列
+  // const get0_totte = document.getElementById('get0_totte');
+  // const get1_totte = document.getElementById('get1_totte');
+  // const get2_totte = document.getElementById('get2_totte');
+  // const get3_totte = document.getElementById('get3_totte');
+  // let get_totte = [get0_totte, get1_totte, get2_totte, get3_totte];//<img>の配列
 
   function setData()                      {//肉球を表示させる関数。
     let cdata_nade = localStorage.getItem("clear_nade");//ローカルストレージに保存した配列キー。初期{0,0,0,0}
     let cdata_oyatsu = localStorage.getItem("clear_oyatsu");
     let cdata_tsuna = localStorage.getItem("clear_tsuna");
-    let cdata_totte = localStorage.getItem("clear_totte");
+    // let cdata_totte = localStorage.getItem("clear_totte");
 
     if ( cdata_nade != null ){
       ED_nade = JSON.parse(cdata_nade);  //Storageのデータを配列に戻す
@@ -479,16 +480,16 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
         }}}
     if ( cdata_tsuna != null ){
       ED_tsuna = JSON.parse(cdata_tsuna);  //Storageのデータを配列に戻す
-        for (var i = 0 ; i < 4 ; i++) {
+        for (var i = 0 ; i < 3 ; i++) {
         if( ED_tsuna[i] == 1 ){
           get_tsuna[i].src = "img/memory.png";//対応する表の<img src="">に代入。
         }}}
-    if ( cdata_totte != null ){
-      ED_totte = JSON.parse(cdata_totte);  //Storageのデータを配列に戻す
-        for (var i = 0 ; i < 4 ; i++) {
-        if( ED_totte[i] == 1 ){
-          get_totte[i].src = "img/memory.png";//対応する表の<img src="">に代入。
-        }}}
+    // if ( cdata_totte != null ){
+    //   ED_totte = JSON.parse(cdata_totte);  //Storageのデータを配列に戻す
+    //     for (var i = 0 ; i < 4 ; i++) {
+    //     if( ED_totte[i] == 1 ){
+    //       get_totte[i].src = "img/memory.png";//対応する表の<img src="">に代入。
+    //     }}}
   }
 
   function getED(){//EDをみたら配列の中身0を1にする。
@@ -542,7 +543,7 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
   const comp_nade = document.getElementById('comp_nade');
   const comp_oyatsu = document.getElementById('comp_oyatsu');
   const comp_tsuna = document.getElementById('comp_tsuna');
-  const comp_totte = document.getElementById('comp_totte');
+  // const comp_totte = document.getElementById('comp_totte');
   const memory_fin = document.getElementById('memory_fin');
   
   
@@ -550,14 +551,15 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
     
         //ゲーム実装したら消す。
           //おやつあて
-          ED_oyatsu = [1,1,1,1];
-          localStorage.setItem("clear_oyatsu",JSON.stringify(ED_oyatsu));
-          //つなひき
-          ED_tsuna = [1,1,1,1];
-          localStorage.setItem("clear_tsuna",JSON.stringify(ED_tsuna));
+          // ED_oyatsu = [1,1,1,1];
+          // localStorage.setItem("clear_oyatsu",JSON.stringify(ED_oyatsu));
+          // //つなひき
+          // ED_tsuna = [1,1,1,1];
+          // localStorage.setItem("clear_tsuna",JSON.stringify(ED_tsuna));
+
           //とってこい
-          ED_totte = [1,1,1,1];
-          localStorage.setItem("clear_totte",JSON.stringify(ED_totte));
+          // ED_totte = [1,1,1,1];
+          // localStorage.setItem("clear_totte",JSON.stringify(ED_totte));
 
     window.onload = function(){
       console.log("おもいで画面です。");//ok
@@ -570,26 +572,26 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
 
 
     function complete(){//各ゲームでフルコンプしたら0⇒1
-      if(ED_nade.toString() == fullComplete.toString()){
+      if(ED_nade.toString() == minifullComplete.toString()){
         console.log('なでなでフルコンプ');
         comp_nade.classList.remove('not_complete');
         tofullComplete[0]  = 1;
       }
-      if(ED_oyatsu.toString() == fullComplete.toString()){
+      if(ED_oyatsu.toString() == minifullComplete.toString()){
         console.log('おやつあてフルコンプ');
         comp_oyatsu.classList.remove('not_complete');
         tofullComplete[1]  = 1;
       }
-      if(ED_tsuna.toString() == fullComplete.toString()){
+      if(ED_tsuna.toString() == minifullComplete.toString()){
         console.log('つなひきフルコンプ');
         comp_tsuna.classList.remove('not_complete');
         tofullComplete[2]  = 1;
       }
-      if(ED_totte.toString() == fullComplete.toString()){
-        console.log('とってこいフルコンプ');
-        comp_totte.classList.remove('not_complete');
-        tofullComplete[3]  = 1;
-      }
+      // if(ED_totte.toString() == fullComplete.toString()){
+      //   console.log('とってこいフルコンプ');
+      //   comp_totte.classList.remove('not_complete');
+      //   tofullComplete[3]  = 1;
+      // }
       console.log(tofullComplete);//ok
       //ストレージにtofullCompleteを保存。
       localStorage.setItem("clear_all",JSON.stringify(tofullComplete));
@@ -619,11 +621,11 @@ if(window.location.href.endsWith('play.html')){//あそび画面に居たら
         ED_oyatsu = [0,0,0,0];
         localStorage.setItem("clear_oyatsu",JSON.stringify (ED_oyatsu));
         //つなひき
-        ED_tsuna = [0,0,0,0];
+        ED_tsuna = [0,0,0];
         localStorage.setItem("clear_tsuna",JSON.stringify(ED_tsuna));
         //とってこい
-        ED_totte = [0,0,0,0];
-        localStorage.setItem("clear_totte",JSON.stringify(ED_totte));
+        // ED_totte = [0,0,0,0];
+        // localStorage.setItem("clear_totte",JSON.stringify(ED_totte));
         console.log('リセットしました。');
       modal_reset.classList.add('hidden');
       window.location.reload();//最後にリロード

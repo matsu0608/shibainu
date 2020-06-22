@@ -5,6 +5,7 @@
   const btn = document.getElementById('btn');
   const fin = document.getElementById('fin');
   const toResult = document.getElementById('toResult');
+  const fin_result = document.getElementById('fin_result');
   // const scoreLabel = document.querySelector('#result>p');
   // -----------------↓タイマー---------------------
   const timer = document.getElementById('timer');
@@ -207,7 +208,6 @@
 
 
 
-
     //   btn.addEventListener('touchstart', ()=>{//「つぎ」ボタンを押したとき
         
     //     if(btn.classList.contains('disabled')){//未回答のときは無。
@@ -239,6 +239,43 @@
       
     // })
   }
+
+  function getED(){//EDをみたら配列の中身0を1にする。
+
+    //urlで
+      if(window.location.href.match(/0oyatsu/)){//{1,x,x,x}
+        // localStorage.getItem("clear_oyatsu");
+        ED_oyatsu[0] = 1;
+        console.log(ED_oyatsu);
+        localStorage.setItem("clear_oyatsu",JSON.stringify(ED_oyatsu));
+        return;
+      }else if(window.location.href.match(/1oyatsu/)){//{x,1,x,x}
+        ED_oyatsu[1] = 1;
+        localStorage.setItem("clear_oyatsu",JSON.stringify(ED_oyatsu));
+        return;
+      }else if(window.location.href.match(/2oyatsu/)){//{x,x,1,x}
+        ED_oyatsu[2] = 1;
+        localStorage.setItem("clear_oyatsu",JSON.stringify(ED_oyatsu));
+        return;
+      }else if(window.location.href.match(/3oyatsu/)){//{x,x,x,1}
+        ED_oyatsu[3] = 1;
+        localStorage.setItem("clear_oyatsu",JSON.stringify(ED_oyatsu));
+        return;
+      }    
+    }
+
+  if(window.location.href.endsWith('result.html')){//どこかしらリゾルト画面にいたら。
+      fin_result.addEventListener('touchstart',()=>{
+      fin_result.onclick= location.href="/index.html";
+      });
+    window.onload = function(){
+      console.log("リゾルト画面です。");//ok
+      getED();
+      console.log(window.localStorage);//ok
+    }
+
+  }
+
 
   
 }

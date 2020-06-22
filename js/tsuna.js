@@ -185,7 +185,27 @@
     
   }
 
-
+  let ED_nade;
+  let n = localStorage.getItem("clear_nade");
+  if (!n) {
+    ED_nade = new Array(0,0,0,0);
+  } else {
+    ED_nade = JSON.parse(n);
+  }
+  let ED_oyatsu;
+  let o = localStorage.getItem("clear_oyatsu");
+  if (!o) {
+    ED_oyatsu = new Array(0,0,0,0);
+  } else {
+    ED_oyatsu = JSON.parse(o);
+  }
+  let ED_tsuna;
+  let tsu = localStorage.getItem("clear_tsuna");
+  if (!tsu) {
+    ED_tsuna = new Array(0,0,0);
+  } else {
+    ED_tsuna = JSON.parse(tsu);
+  }
   function getED(){//EDをみたら配列の中身0を1にする。
 
     //urlで

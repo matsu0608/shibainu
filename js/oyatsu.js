@@ -239,6 +239,27 @@
       
     // })
   }
+  let ED_nade;
+  let n = localStorage.getItem("clear_nade");
+  if (!n) {
+    ED_nade = new Array(0,0,0,0);
+  } else {
+    ED_nade = JSON.parse(n);
+  }
+  let ED_oyatsu;
+  let o = localStorage.getItem("clear_oyatsu");
+  if (!o) {
+    ED_oyatsu = new Array(0,0,0,0);
+  } else {
+    ED_oyatsu = JSON.parse(o);
+  }
+  let ED_tsuna;
+  let tsu = localStorage.getItem("clear_tsuna");
+  if (!tsu) {
+    ED_tsuna = new Array(0,0,0);
+  } else {
+    ED_tsuna = JSON.parse(tsu);
+  }
 
   function getED(){//EDをみたら配列の中身0を1にする。
 
@@ -249,17 +270,20 @@
         console.log(ED_oyatsu);
         localStorage.setItem("clear_oyatsu",JSON.stringify(ED_oyatsu));
         return;
-      }else if(window.location.href.match(/1oyatsu/)){//{x,1,x,x}
+        }else if(window.location.href.match(/1oyatsu/)){//{x,1,x,x}
         ED_oyatsu[1] = 1;
+        console.log(ED_oyatsu);
         localStorage.setItem("clear_oyatsu",JSON.stringify(ED_oyatsu));
         return;
-      }else if(window.location.href.match(/2oyatsu/)){//{x,x,1,x}
+        }else if(window.location.href.match(/2oyatsu/)){//{x,x,1,x}
         ED_oyatsu[2] = 1;
+        console.log(ED_oyatsu);
         localStorage.setItem("clear_oyatsu",JSON.stringify(ED_oyatsu));
         return;
-      }else if(window.location.href.match(/3oyatsu/)){//{x,x,x,1}
-        ED_oyatsu[3] = 1;
-        localStorage.setItem("clear_oyatsu",JSON.stringify(ED_oyatsu));
+        }else if(window.location.href.match(/3oyatsu/)){//{x,x,x,1}
+          ED_oyatsu[3] = 1;
+          console.log(ED_oyatsu);
+          localStorage.setItem("clear_oyatsu",JSON.stringify(ED_oyatsu));
         return;
       }    
     }
@@ -269,8 +293,8 @@
       fin_result.onclick= location.href="/index.html";
       });
     window.onload = function(){
-      console.log("リゾルト画面です。");//ok
       getED();
+      console.log("リゾルト画面です。");//ok
       console.log(window.localStorage);//ok
     }
 
